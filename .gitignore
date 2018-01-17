@@ -1,5 +1,6 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
+.sass-cache
 
 ### STS ###
 .apt_generated
