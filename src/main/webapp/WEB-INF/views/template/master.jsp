@@ -1,4 +1,3 @@
-
 </html><%@ page pageEncoding="UTF-8" session="true"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -29,20 +28,20 @@
     <link rel="stylesheet" href="<c:url value='/assets/font-awesome/css/font-awesome.min.css' />">
     <link rel="stylesheet" href="<c:url value='/assets/plugins/owl-carousel/owl.carousel.css' />">
     <link rel="stylesheet" href="<c:url value='/assets/plugins/owl-carousel/owl.theme.css' />">
-    <link rel="stylesheet" href="<c:url value='/assets/custom/css/styles.css' />">
+   <%-- <link rel="stylesheet" href="<c:url value='/assets/custom/css/styles.css' />">--%>
     <!-- /custom styles-->
 </head>
 
-<body class="navbar-bottom">
-<!-- 		<div id="preload"> -->
-<!-- 		    <div class="spinner"> -->
-<!-- 		        <div class="rect1"></div> -->
-<!-- 		        <div class="rect2"></div> -->
-<!-- 		        <div class="rect3"></div> -->
-<!-- 		        <div class="rect4"></div> -->
-<!-- 		        <div class="rect5"></div> -->
-<!-- 		    </div> -->
-<!-- 	  	</div> -->
+<body class="navbar-top layout">
+<%-- 		<div id="preload">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>--%>
 
 <div class="wrapper">
 
@@ -56,7 +55,6 @@
     <tiles:insertAttribute name="footer" />
 </div>
 <!-- .wrapper -->
-
 
 <!-- Core JS files -->
 <script type="text/javascript" src="<c:url value='/assets/js/plugins/loaders/pace.min.js' />"></script>
@@ -73,7 +71,10 @@
 <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/prism.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/assets/js/core/app.js' />"></script>
 <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/ripple.min.js' />"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom_jquery.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/assets/js/pages/navbar_hideable.js' />"></script>
+
 <!-- /theme JS files -->
 
 <!-- Custom JS files -->

@@ -6,7 +6,7 @@
 <%@ taglib prefix="cm" tagdir="/WEB-INF/tags"%>
 
 <tiles:insertDefinition name="master">
-    <tiles:putAttribute name="title" value="Home" />
+    <tiles:putAttribute name="title" value="Dashboard" />
     <tiles:putAttribute name="body">
 
         <c:set var="lang" value="${pageContext.response.locale.language}"/>
@@ -17,17 +17,17 @@
             <!-- Page content -->
             <div class="page-content">
 
-                <cm:sidebar/>
+                <cm:sidebarAdmin/>
 
                 <!-- Main content -->
                 <div class="content-wrapper">
                     <!-- News -->
                     <div class="panel panel-flat">
                         <div class="panel-heading">
-                            <h2 class="panel-title">Все объявления</h2>
+                            <h2 class="panel-title">Admin page</h2>
                         </div>
                         <div class="panel-body">
-                            Home page
+
                         </div>
                         <!-- .panel-body -->
                     </div>
