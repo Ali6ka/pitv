@@ -24,7 +24,8 @@ public class HomeController {
     @RequestMapping(
             value = {"/login"},
             method = {RequestMethod.GET})
-    public String loginPage() {
+    public String loginPage()
+    {
         return "login";
     }
 
@@ -32,7 +33,8 @@ public class HomeController {
             value = {"/accessDenied"},
             method = {RequestMethod.GET}
     )
-    public String accessDeniedPage(ModelMap model) {
+    public String accessDeniedPage(ModelMap model)
+    {
         model.addAttribute("user", "Person");
         return "accessDenied";
     }
@@ -41,7 +43,8 @@ public class HomeController {
             value = {"/logout"},
             method = {RequestMethod.GET}
     )
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response)
+    {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             (new SecurityContextLogoutHandler()).logout(request, response, auth);

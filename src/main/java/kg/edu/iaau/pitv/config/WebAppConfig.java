@@ -12,7 +12,8 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(new String[]{"/assets/**"}).addResourceLocations(new String[]{"/assets/"}).setCachePeriod(31556926);
+        registry.addResourceHandler(new String[]{"/assets/**"})
+                .addResourceLocations(new String[]{"/assets/"}).setCachePeriod(31556926);
     }
 
     @Bean
