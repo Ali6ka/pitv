@@ -30,6 +30,30 @@
     <link rel="stylesheet" href="<c:url value='/assets/plugins/owl-carousel/owl.theme.css' />">
    <%-- <link rel="stylesheet" href="<c:url value='/assets/custom/css/styles.css' />">--%>
     <!-- /custom styles-->
+
+    <!-- Core JS files -->
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/loaders/pace.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/core/libraries/jquery.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/core/libraries/bootstrap.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/loaders/blockui.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/nicescroll.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/drilldown.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/fab.min.js' />"></script>
+    <!-- /core JS files -->
+
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="<c:url value='/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/prism.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/core/app.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/ripple.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/selects/bootstrap_multiselect.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/styling/uniform.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/pages/form_multiselect.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/styling/switchery.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom_jquery.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/pages/navbar_hideable.js' />"></script
+    <!-- /theme JS files -->
 </head>
 
 <body class="navbar-top layout">
@@ -55,27 +79,6 @@
     <tiles:insertAttribute name="footer" />
 </div>
 <!-- .wrapper -->
-
-<!-- Core JS files -->
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/loaders/pace.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/core/libraries/jquery.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/core/libraries/bootstrap.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/loaders/blockui.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/nicescroll.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/drilldown.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/fab.min.js' />"></script>
-<!-- /core JS files -->
-
-<!-- Theme JS files -->
-<script type="text/javascript" src="<c:url value='/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/prism.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/core/app.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/ripple.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom_jquery.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/pages/navbar_hideable.js' />"></script>
-
-<!-- /theme JS files -->
 
 <!-- Custom JS files -->
 <script src="<c:url value='/assets/plugins/owl-carousel/owl.carousel.min.js' />"></script>

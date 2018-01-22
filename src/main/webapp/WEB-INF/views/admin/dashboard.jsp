@@ -21,6 +21,9 @@
 
                 <!-- Main content -->
                 <div class="content-wrapper">
+
+                    <cm:breadcrumb/>
+
                     <!-- News -->
                     <div class="panel panel-flat">
                         <div class="panel-heading">

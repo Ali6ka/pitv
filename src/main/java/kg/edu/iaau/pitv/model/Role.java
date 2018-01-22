@@ -11,9 +11,9 @@ public class Role
 
     private String name;
 
-/*    private Set<UserRole> userRoles;*/
-
     private Set<User> users;
+
+    /*    private Set<UserRole> userRoles;*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="user_sequence")
