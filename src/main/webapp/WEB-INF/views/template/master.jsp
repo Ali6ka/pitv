@@ -47,12 +47,13 @@
     <script type="text/javascript" src="<c:url value='/assets/js/core/app.js' />"></script>
     <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/ripple.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/selects/bootstrap_multiselect.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/selects/select2.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/styling/uniform.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/assets/js/pages/form_multiselect.js' />"></script>
     <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/styling/switchery.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom_jquery.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/pages/navbar_hideable.js' />"></script
+    <script type="text/javascript" src="<c:url value='/assets/js/pages/layout_header_fixed.js' />"></script>
     <!-- /theme JS files -->
 </head>
 
