@@ -1,90 +1,110 @@
-</html><%@ page pageEncoding="UTF-8" session="true"%>
+<%@ page pageEncoding="UTF-8" session="true"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
 <!DOCTYPE html>
-<html lang="ru">
+<html class="no-js js-menubar" lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="bootstrap admin template">
     <meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <title><tiles:insertAttribute name="title" /></title>
 
-    <!-- Global stylesheets -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    <link href="<c:url value='/assets/css/icons/icomoon/styles.css' />" rel="stylesheet" type="text/css">
-    <link href="<c:url value='/assets/css/plugins/bootstrap.css' />" rel="stylesheet" type="text/css">
-    <link href="<c:url value='/assets/css/plugins/core.css' />" rel="stylesheet" type="text/css">
-    <link href="<c:url value='/assets/css/plugins/components.css' />" rel="stylesheet" type="text/css">
-    <link href="<c:url value='/assets/css/plugins/colors.css' />" rel="stylesheet" type="text/css">
-    <!-- /global stylesheets -->
 
-    <!-- Custom styles -->
-    <link href="<c:url value='/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.css' />" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="<c:url value='/assets/font-awesome/css/font-awesome.min.css' />">
-    <link rel="stylesheet" href="<c:url value='/assets/plugins/owl-carousel/owl.carousel.css' />">
-    <link rel="stylesheet" href="<c:url value='/assets/plugins/owl-carousel/owl.theme.css' />">
-   <%-- <link rel="stylesheet" href="<c:url value='/assets/custom/css/styles.css' />">--%>
-    <!-- /custom styles-->
+    <link rel="apple-touch-icon" href="../../../assets/images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../../../assets/images/favicon.ico">
 
-    <!-- Core JS files -->
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/loaders/pace.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/core/libraries/jquery.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/core/libraries/bootstrap.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/loaders/blockui.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/nicescroll.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/drilldown.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/fab.min.js' />"></script>
-    <!-- /core JS files -->
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../../assets/global/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../assets/global/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="../../../assets/css/site.min.css">
 
-    <!-- Theme JS files -->
-    <script type="text/javascript" src="<c:url value='/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/prism.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/core/app.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/ripple.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/selects/bootstrap_multiselect.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/selects/select2.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/styling/uniform.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/pages/form_multiselect.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/forms/styling/switchery.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/plugins/ui/headroom/headroom_jquery.min.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/assets/js/pages/layout_header_fixed.js' />"></script>
-    <!-- /theme JS files -->
+    <!-- Plugins -->
+    <link rel="stylesheet" href="../../../assets/global/vendor/animsition/animsition.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/asscrollable/asScrollable.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/switchery/switchery.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/intro-js/introjs.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/slidepanel/slidePanel.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/flag-icon-css/flag-icon.css">
+
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../../assets/global/fonts/web-icons/web-icons.min.css">
+    <link rel="stylesheet" href="../../../assets/global/fonts/brand-icons/brand-icons.min.css">
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+
+    <!-- Scripts -->
+    <script src="../../../assets/global/vendor/breakpoints/breakpoints.js"></script>
+    <script>
+        Breakpoints();
+    </script>
+
 </head>
 
-<body class="navbar-top layout">
-<%-- 		<div id="preload">
-            <div class="spinner">
-                <div class="rect1"></div>
-                <div class="rect2"></div>
-                <div class="rect3"></div>
-                <div class="rect4"></div>
-                <div class="rect5"></div>
-            </div>
-        </div>--%>
-
-<div class="wrapper">
-
-    <div class="content custom">
-
-        <tiles:insertAttribute name="header" />
-        <tiles:insertAttribute name="body" />
-
-    </div>
-    <!-- .content -->
-    <tiles:insertAttribute name="footer" />
+<body class="animsition dashboard">
+<tiles:insertAttribute name="header" />
+<tiles:insertAttribute name="sidebar" />
+<tiles:insertAttribute name="gridmenu" />
+<div class="page">
+    <tiles:insertAttribute name="body" />
 </div>
+<tiles:insertAttribute name="footer" />
 <!-- .wrapper -->
 
-<!-- Custom JS files -->
-<script src="<c:url value='/assets/plugins/owl-carousel/owl.carousel.min.js' />"></script>
-<!-- Custom JS files -->
+<!-- Core  -->
 
+<script src="../../../assets/global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
+<script src="../../../assets/global/vendor/jquery/jquery.js"></script>
+<script src="../../../assets/global/vendor/popper-js/umd/popper.min.js"></script>
+<script src="../../../assets/global/vendor/bootstrap/bootstrap.js"></script>
+<script src="../../../assets/global/vendor/animsition/animsition.js"></script>
+<script src="../../../assets/global/vendor/mousewheel/jquery.mousewheel.js"></script>
+<script src="../../../assets/global/vendor/asscrollbar/jquery-asScrollbar.js"></script>
+<script src="../../../assets/global/vendor/asscrollable/jquery-asScrollable.js"></script>
+<script src="../../../assets/global/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+
+<!-- Plugins -->
+<script src="../../../assets/global/vendor/switchery/switchery.js"></script>
+<script src="../../../assets/global/vendor/intro-js/intro.js"></script>
+<script src="../../../assets/global/vendor/screenfull/screenfull.js"></script>
+<script src="../../../assets/global/vendor/slidepanel/jquery-slidePanel.js"></script>
+
+<!-- Scripts -->
+<script src="../../../assets/global/js/Component.js"></script>
+<script src="../../../assets/global/js/Plugin.js"></script>
+<script src="../../../assets/global/js/Base.js"></script>
+<script src="../../../assets/global/js/Config.js"></script>
+
+<script src="../../../assets/js/Section/Menubar.js"></script>
+<script src="../../../assets/js/Section/GridMenu.js"></script>
+<script src="../../../assets/js/Section/Sidebar.js"></script>
+<script src="../../../assets/js/Section/PageAside.js"></script>
+<script src="../../../assets/js/Plugin/menu.js"></script>
+
+<script src="../../../assets/global/js/config/colors.js"></script>
+<script src="../../../assets/js/config/tour.js"></script>
+<script>Config.set('assets', '../../../assets');</script>
+
+<!-- Page -->
+<script src="../../../assets/js/Site.js"></script>
+<script src="../../../assets/global/js/Plugin/asscrollable.js"></script>
+<script src="../../../assets/global/js/Plugin/slidepanel.js"></script>
+<script src="../../../assets/global/js/Plugin/switchery.js"></script>
+
+
+<script>
+    (function(document, window, $){
+        'use strict';
+        var Site = window.Site;
+        $(document).ready(function(){
+            Site.run();
+        });
+    })(document, window, jQuery);
+</script>
 <!-- logic for show/hide sidebar on mobile(less than 768px) -->
 </body>
 </html>

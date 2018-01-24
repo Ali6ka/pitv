@@ -7,9 +7,11 @@
 
 <tiles:insertDefinition name="master">
     <tiles:putAttribute name="title" value="Dashboard-User" />
-    <tiles:putAttribute name="body">
+    <tiles:putAttribute name="sidebar">
+        <cm:sidebarAdmin/>
+    </tiles:putAttribute>
 
-        <c:set var="lang" value="${pageContext.response.locale.language}"/>
+    <tiles:putAttribute name="body">
 
         <!-- Page container -->
         <div class="page-container">

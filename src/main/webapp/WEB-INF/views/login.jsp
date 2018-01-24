@@ -6,82 +6,69 @@
         taglib
         prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<tiles:insertDefinition name="master">
-    <tiles:putAttribute name="title" value="Войти" />
+<tiles:insertDefinition name="master_second">
+    <tiles:putAttribute name="title" value="MCMS: Login" />
     <tiles:putAttribute name="body">
-        <!-- Page container -->
-        <div class="page-container">
 
-            <!-- Page content -->
-            <div class="page-content">
-
-                <!-- Main content -->
-                <div class="content-wrapper">
-
-                    <div class="login-container">
-                        <div class="page-container">
-                            <c:url var="loginUrl" value="/login" />
-                            <!-- Simple login form -->
-                            <form action="${loginUrl}" method="post">
-
-                                <div class="panel panel-body login-form">
-                                    <c:if test="${param.error != null}">
-                                        <div class="alert alert-danger">
-                                            <p>Invalid username and password.</p>
-                                        </div>
-                                    </c:if>
-                                    <c:if test="${param.logout != null}">
-                                        <div class="alert alert-success">
-                                            <p>You have been logged out successfully.</p>
-                                        </div>
-                                    </c:if>
-                                    <div class="text-center">
-                                        <div class="icon-object border-slate-300 text-slate-300">
-                                            <i class="icon-reading"></i>
-                                        </div>
-                                        <h5 class="content-group">
-                                            Login to your account <small class="display-block">Enter
-                                            your credentials below</small>
-                                        </h5>
-                                    </div>
-
-                                    <div class="form-group has-feedback has-feedback-left">
-                                        <input type="text" class="form-control" placeholder="Username"
-                                               name="ssoId">
-                                        <div class="form-control-feedback">
-                                            <i class="icon-user text-muted"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group has-feedback has-feedback-left">
-                                        <input type="password" class="form-control" name="password"
-                                               placeholder="Password">
-                                        <div class="form-control-feedback">
-                                            <i class="icon-lock2 text-muted"></i>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" name="${_csrf.parameterName}"
-                                           value="${_csrf.token}" />
-
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">
-                                            Sign in <i class="icon-circle-right2 position-right"></i>
-                                        </button>
-                                    </div>
-
-                                    <!-- 											<div class="text-center"> -->
-                                    <!-- 												<a href="login_password_recover.html">Forgot password?</a> -->
-                                    <!-- 											</div> -->
-                                </div>
-                            </form>
-                            <!-- /simple login form -->
+        <!-- Page -->
+        <div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">
+            <div class="page-content vertical-align-middle animation-slide-top animation-duration-1">
+                <div class="panel">
+                    <div class="panel-body">
+                        <c:if test="${param.error != null}">
+                            <div class="alert alert-danger">
+                                <p>Invalid username and password.</p>
+                            </div>
+                        </c:if>
+                        <c:if test="${param.logout != null}">
+                            <div class="alert alert-success">
+                                <p>You have been logged out successfully.</p>
+                            </div>
+                        </c:if>
+                        <div class="brand">
+                            <img class="brand-img" src="../../assets//images/logo-blue.png" alt="...">
+                            <h2 class="brand-text font-size-18">IAU PITV</h2>
                         </div>
+                        <form method="post" action="<c:url value="/login"/>">
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <input type="text" class="form-control" name="ssoId" />
+                                <label class="floating-label">Login</label>
+                            </div>
+                            <div class="form-group form-material floating" data-plugin="formMaterial">
+                                <input type="password" class="form-control" name="password" />
+                                <label class="floating-label">Password</label>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg float-left">
+                                    <input type="checkbox" id="inputCheckbox" name="remember">
+                                    <label for="inputCheckbox">Remember me</label>
+                                </div>
+                                <a class="float-right" href="forgot-password.html">Forgot password?</a>
+                            </div>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            <button type="submit" class="btn btn-primary btn-block btn-lg mt-40">Sign in</button>
+                        </form>
+                        <p>Still no account? Please go to <a href="register-v3.html">Sign up</a></p>
                     </div>
                 </div>
-                <!-- /main content -->
+
+                <footer class="page-copyright page-copyright-inverse">
+                    <p>WEBSITE BY amazingSurge</p>
+                    <p>© 2018. All RIGHT RESERVED.</p>
+                    <div class="social">
+                        <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                            <i class="icon bd-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                            <i class="icon bd-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                            <i class="icon bd-google-plus" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </footer>
             </div>
-            <!-- /page content -->
         </div>
-        <!-- /page container -->
+        <!-- End Page -->
     </tiles:putAttribute>
 </tiles:insertDefinition>
