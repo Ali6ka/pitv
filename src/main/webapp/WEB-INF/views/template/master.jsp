@@ -29,8 +29,15 @@
     <link rel="stylesheet" href="../../../assets/global/vendor/switchery/switchery.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/intro-js/introjs.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/slidepanel/slidePanel.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/flag-icon-css/flag-icon.css">
-
+    <link rel="stylesheet" href="../../../assets/global /vendor/flag-icon-css/flag-icon.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/bootstrap-select/bootstrap-select.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/select2/select2.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/multi-select/multi-select.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/datatables.net-bs4/dataTables.bootstrap4.min.css?">
+    <link rel="stylesheet"
+          href="../../../assets/global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.min.css?">
+    <link rel="stylesheet"
+          href="../../../assets/global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.min.css?">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="../../../assets/global/fonts/web-icons/web-icons.min.css">
@@ -50,7 +57,12 @@
 <tiles:insertAttribute name="sidebar" />
 <tiles:insertAttribute name="gridmenu" />
 <div class="page">
-    <tiles:insertAttribute name="body" />
+    <div class="page-header">
+        <tiles:insertAttribute name="page-header" />
+    </div>
+    <div class="page-content">
+        <tiles:insertAttribute name="page-content" />
+    </div>
 </div>
 <tiles:insertAttribute name="footer" />
 <!-- .wrapper -->
@@ -72,6 +84,20 @@
 <script src="../../../assets/global/vendor/intro-js/intro.js"></script>
 <script src="../../../assets/global/vendor/screenfull/screenfull.js"></script>
 <script src="../../../assets/global/vendor/slidepanel/jquery-slidePanel.js"></script>
+<script src="../../../assets/global/vendor/bootstrap-select/bootstrap-select.js"></script>
+<script src="../../../assets/global/vendor/select2/select2.full.min.js"></script>
+<script src="../../../assets/global/vendor/multi-select/jquery.multi-select.js"></script>
+<script src="../../../assets/global/vendor/datatables.net/jquery.dataTables.js?"></script>
+<script src="../../../assets/global/vendor/datatables.net-bs4/dataTables.bootstrap4.js?"></script>
+<script src="../../../assets/global/vendor/datatables.net-fixedheader/dataTables.fixedHeader.min.js?"></script>
+<script src="../../../assets/global/vendor/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js?"></script>
+<script src="../../../assets/global/vendor/datatables.net-rowgroup/dataTables.rowGroup.min.js?"></script>
+<script src="../../../assets/global/vendor/datatables.net-scroller/dataTables.scroller.min.js?"></script>
+<script src="../../../assets/global/vendor/datatables.net-responsive/dataTables.responsive.min.js?"></script>
+<script src="../../../assets/global/vendor/datatables.net-responsive-bs4/responsive.bootstrap4.min.js?"></script>
+<script src="../../../assets/global/vendor/datatables.net-buttons/dataTables.buttons.min.js?"></script>
+<script src="../../../assets/global/vendor/asrange/jquery-asRange.min.js"></script>
+<script src="../../../assets/global/vendor/bootbox/bootbox.js"></script>
 
 <!-- Scripts -->
 <script src="../../../assets/global/js/Component.js"></script>
@@ -94,6 +120,13 @@
 <script src="../../../assets/global/js/Plugin/asscrollable.js"></script>
 <script src="../../../assets/global/js/Plugin/slidepanel.js"></script>
 <script src="../../../assets/global/js/Plugin/switchery.js"></script>
+<script src="../../../assets/global/js/Plugin/select2.js"></script>
+<script src="../../../assets/global/js/Plugin/multi-select.js"></script>
+<script src="../../../assets/global/js/Plugin/datatables.js"></script>
+<script src="../../../assets/examples/js/tables/datatable.js"></script>
+
+
+
 
 
 <script>

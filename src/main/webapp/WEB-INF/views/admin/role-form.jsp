@@ -6,58 +6,65 @@
 <%@ taglib prefix="cm" tagdir="/WEB-INF/tags"%>
 
 <tiles:insertDefinition name="master">
-    <tiles:putAttribute name="title" value="Dashboard-User" />
-    <tiles:putAttribute name="body">
 
-        <c:set var="lang" value="${pageContext.response.locale.language}"/>
+<tiles:putAttribute name="title" value="Dashboard-Role" />
+<tiles:putAttribute name="sidebar">
+    <cm:sidebarAdmin/>
+</tiles:putAttribute>
 
-        <!-- Page container -->
-        <div class="page-container">
+<tiles:putAttribute name="page-header">
+    <h1 class="page-title">Role form</h1>
+    <cm:breadcrumb/>
+    <div class="page-header-actions">
+        <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
+                data-toggle="tooltip" data-original-title="Edit">
+            <i class="icon wb-pencil" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
+                data-toggle="tooltip" data-original-title="Refresh">
+            <i class="icon wb-refresh" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
+                data-toggle="tooltip" data-original-title="Setting">
+            <i class="icon wb-settings" aria-hidden="true"></i>
+        </button>
+    </div>
+</tiles:putAttribute>
 
-            <!-- Page content -->
-            <div class="page-content">
-
-                <cm:sidebarAdmin/>
-
-                <!-- Main content -->
-                <div class="content-wrapper">
-                    <!-- News -->
-                    <div class="panel panel-flat">
-                        <div class="panel-heading">
-                            <h2 class="panel-title">Create User</h2>
-                        </div>
-                        <div class="panel-body">
-                            <form action="<c:url value='/dashboardrole'/>" method="post" class="admin-form">
-                                <div class="tab-content">
-                                    <div class="form-group row">
-                                        <label class="control-label col-lg-3" for="name">Title : <sup class="requiredStar">*</sup>
-                                        </label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="name" id="name"
-                                                   class="form-control"
-                                                   oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                                   oninput="setCustomValidity('')" value="${role.name}" required>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" name="roleId" value="${role.id}">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                    <div class="text-right taxes-form__submit-wrapper">
-                                        <input type="submit" class="btn btn-primary" name="submit" value="Save">
-                                    </div>
-                                </div> <!-- .tab-content -->
-                            </form>
-                        </div>
-                        <!-- .panel-body -->
+<tiles:putAttribute name="page-content">
+    <div class="panel">
+        <div class="panel-body container-fluid">
+            <div class="row row-lg">
+                <div class="col-md-6">
+                    <!-- Example Basic Form (Form row) -->
+                    <div class="example-wrap">
+                        <h4 class="example-title">Basic Form (Form row)</h4>
+                        <c:if test="${!empty result}">
+                            <cm:alert_wizard title="${result == 'success' ? 'Role successfuly saved' :
+                                                                            'Sorry, the error was occured, try again'}"
+                                             alert_type="${result == 'success' ? 'success' : 'danger'}" />
+                        </c:if>
+                        <form action="<c:url value='/dashboard/role/save'/>" method="post" class="admin-form">
+                            <div class="tab-content">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="name">Title : <sup class="requiredStar">*</sup>
+                                    </label>
+                                    <input type="text" name="name" id="name"
+                                           class="form-control"
+                                           oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
+                                           oninput="setCustomValidity('')" value="${role.name}" required>
+                                </div>
+                                <input type="hidden" name="roleId" value="${role.id}">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                <div class="text-right taxes-form__submit-wrapper">
+                                    <button type="submit" class="btn btn-primary">Save role<i class="icon-arrow-right14 position-right"></i></button>
+                                </div>
+                            </div> <!-- .tab-content -->
+                        </form>
                     </div>
-                    <!-- .panel.panel-flat -->
-                    <!--/news -->
                 </div>
-                <!-- /main content -->
-
             </div>
-            <!-- /page content -->
-
         </div>
-        <!-- /page container -->
-    </tiles:putAttribute>
+    </div>
+</tiles:putAttribute>
 </tiles:insertDefinition>

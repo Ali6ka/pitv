@@ -10,8 +10,9 @@
     <!-- Master -->
     <definition name="master" template="/WEB-INF/views/template/master.jsp">
         <put-attribute name="header" value=".header" />
-        <put-attribute name="gridmenu" value=".gridmenu"/>
-        <put-attribute name="body" value="" />
+        <put-attribute name="gridmenu" value=".gridmenu" />
+        <put-attribute name="page-header" value="" />
+        <put-attribute name="page-content" value="" />
         <put-attribute name="footer" value=".footer" />
     </definition>
 

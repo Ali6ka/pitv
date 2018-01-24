@@ -6,24 +6,24 @@
 <%@ taglib prefix="cm" tagdir="/WEB-INF/tags"%>
 
 <tiles:insertDefinition name="master">
-    <tiles:putAttribute name="title" value="Admin" />
-    <tiles:putAttribute name="sidebar">
-        <cm:sidebarAdmin/>
-    </tiles:putAttribute>
+<tiles:putAttribute name="title" value="Admin" />
+<tiles:putAttribute name="sidebar">
+    <cm:sidebarAdmin/>
+</tiles:putAttribute>
 
-    <tiles:putAttribute name="body">
-        <div class="page-header">
-            <h1 class="page-title">Menu Collapsed</h1>
+<tiles:putAttribute name="page-header">
+    <h1 class="page-title">Admin Page</h1>
+</tiles:putAttribute>
+
+<tiles:putAttribute name="page-content">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">Admin Page</h3>
         </div>
-        <div class="page-content">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">DEMO CONTENT</h3>
-                </div>
-                <div class="panel-body __web-inspector-hide-shortcut__">
-                    <p>Liberatione, pueros dissentio athenis inventore morborum efficiat facere</p>
-                </div>
-            </div>
+        <div class="panel-body __web-inspector-hide-sho rtcut__">
+            <p>Liberatione, pueros dissentio athenis inventore morborum efficiat facere</p>
         </div>
-    </tiles:putAttribute>
+    </div>
+</tiles:putAttribute>
+
 </tiles:insertDefinition>

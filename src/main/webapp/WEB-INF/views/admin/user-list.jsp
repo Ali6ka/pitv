@@ -6,119 +6,93 @@
 <%@ taglib prefix="cm" tagdir="/WEB-INF/tags"%>
 
 <tiles:insertDefinition name="master">
-    <tiles:putAttribute name="title" value="Dashboard-User" />
-    <tiles:putAttribute name="body">
+<tiles:putAttribute name="title" value="Dashboard-User" />
+<tiles:putAttribute name="sidebar">
+    <cm:sidebarAdmin/>
+</tiles:putAttribute>
 
-        <c:set var="lang" value="${pageContext.response.locale.language}"/>
+<tiles:putAttribute name="page-header">
+    <h1 class="page-title">User list</h1>
+    <cm:breadcrumb/>
+    <div class="page-header-actions">
+        <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
+                data-toggle="tooltip" data-original-title="Edit">
+            <i class="icon wb-pencil" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
+                data-toggle="tooltip" data-original-title="Refresh">
+            <i class="icon wb-refresh" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
+                data-toggle="tooltip" data-original-title="Setting">
+            <i class="icon wb-settings" aria-hidden="true"></i>
+        </button>
+    </div>
+</tiles:putAttribute>
 
-        <!-- Page container -->
-        <div class="page-container">
-
-            <!-- Page content -->
-            <div class="page-content">
-                <cm:sidebarAdmin/>
-                <!-- Main content -->
-                <div class="content-wrapper">
-                    <cm:breadcrumb/>
-                    <!-- .panel .panel-flat -->
-                    <div class="panel panel-flat">
-                        <c:if test="${!empty result}">
-                            <cm:alert_wizard title="${result == 'success' ? 'User successfuly deleted' :
-                                                                            'Sorry, the error was occured, try again'}"
-                                             alert_type="${result == 'success' ? 'success' : 'danger'}" />
-                        </c:if>
-                        <div class="panel-body">
-                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                                <div class="datatable-scroll-wrap">
-                                    <table class="table datatable-responsive dataTable no-footer dtr-inline"
-                                           id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                                            <thead>
-                                            <tr role="row">
-                                                <th>
-                                                    Avatar
-                                                </th>
-                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
-                                                    rowspan="1" colspan="1" aria-sort="ascending" aria-label="First Name: activate to sort column descending">
-                                                    Username
-                                                </th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                                    colspan="1" aria-label="Last Name: activate to sort column ascending">
-                                                    Email
-                                                </th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                                    colspan="1" aria-label="Job Title: activate to sort column ascending">
-                                                    Roles
-                                                </th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                                    colspan="1" aria-label="Status: activate to sort column ascending">
-                                                    Status
-                                                </th>
-                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 100px;"
-                                                    aria-label="Actions">
-                                                    Actions
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="${users}" var="user">
-                                                <tr role="row" class="odd">
-                                                    <td tabindex="0" class="sorting_1">
-                                                        <a href="#" class="media-left">
-                                                            <img src="/assets/custom/images/default_avatar.png" class="img-circle img-sm" alt="">
-                                                        </a>
-                                                    </td>
-                                                    <td>${user.username}</td>
-                                                    <td>${user.email}</td>
-                                                    <td>
-                                                        <c:forEach items="${user.roles}" var="role">
-                                                            ${fn:toLowerCase(role.name)} /
-                                                        </c:forEach>
-                                                    </td>
-                                                    <c:if test="${user.enabled == 0}">
-                                                    <td><span class="label label-danger">
-                                                            DISABLED
-                                                        </span>
-                                                    </td>
-                                                    </c:if>
-                                                    <c:if test="${user.enabled == 1}">
-                                                        <td><span class="label label-success">
-                                                            ENABLED
-                                                        </span>
-                                                        </td>
-                                                    </c:if>
-
-                                                    <td class="text-center">
-                                                        <ul class="icons-list">
-                                                            <li class="text-primary-600">
-                                                                <a href="<c:url value="/dashboard/user/update/${user.id}"/>">
-                                                                    <i class="icon-pencil7"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li class="text-danger-600">
-                                                                <a href="<c:url value="/dashboard/user/delete/${user.id}"/>">
-                                                                    <i class="icon-trash"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        <!-- .panel-body -->
+<tiles:putAttribute name="page-content">
+    <div class="panel">
+        <div class="panel-body">
+            <c:if test="${!empty result}">
+                <cm:alert_wizard title="${result == 'success' ? 'User successfuly deleted' :
+                    'Sorry, the error was occured, try again'}"
+                                 alert_type="${result == 'success' ? 'success' : 'danger'}" />
+            </c:if>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-15">
+                        <a href="<c:url value="/dashboard/user/new"/> ">
+                            <button id="addToTable" class="btn btn-outline btn-primary" type="button">
+                                <i class="icon wb-plus" aria-hidden="true"></i> Create new
+                            </button>
+                        </a>
                     </div>
-                    <!-- .panel.panel-flat -->
                 </div>
-                <!-- /main content -->
             </div>
-            <!-- /page content -->
+            <table class="table table-bordered table-hover table-striped" cellspacing="0" id="exampleAddRow">
+                <thead>
+                <tr>
+                    <th class="text-center">Avatar</th>
+                    <th>Username</th>
+                    <th>Roles</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${users}" var="user">
+                    <tr class="gradeA">
+                        <td class="text-center">
+                            <a href="#" class="media-left">
+                                <img src="/assets/custom/images/default_avatar.png" class="navbar-brand-logo" alt="">
+                            </a>
+                        </td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>
+                            <c:forEach items="${user.roles}" var="role">
+                                ${fn:toLowerCase(role.name)} /
+                            </c:forEach>
+                        </td>
+                        <td class="actions">
+                            <a href="<c:url value="/dashboard/user/update/${user.id}"/>"
+                               class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                               data-toggle="tooltip" data-original-title="Edit">
+                                <i class="icon wb-edit" aria-hidden="true"></i>
+                            </a>
+                            <a href="<c:url value="/dashboard/user/delete/${user.id}"/>"
+                               class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
+                               data-toggle="tooltip" data-original-title="Remove">
+                                <i class="icon wb-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </div>
-        <!-- /page container -->
-    </tiles:putAttribute>
+    </div>
+</tiles:putAttribute>
 </tiles:insertDefinition>
 
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/tables/datatables/datatables.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/plugins/tables/datatables/extensions/responsive.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/assets/js/pages/datatables_responsive.js' />"></script>
+

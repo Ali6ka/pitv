@@ -98,8 +98,6 @@ public class AdminController
             value = {"/dashboard/user/save"},
             method = {RequestMethod.POST})
     public String userSave(Model model,
-                           HttpServletRequest request,
-                           HttpServletResponse response,
                            RedirectAttributes redAttrs,
                            @RequestParam("userId") String id,
                            @RequestParam("username") String username,
@@ -134,6 +132,17 @@ public class AdminController
 
     /********* ROLE ********/
     @RequestMapping(
+            value = {"/dashboard/role/list"},
+            method = {RequestMethod.GET})
+    public String roleList(Model model)
+    {
+        List<Role> roles = roleService.getAll();
+
+        model.addAttribute("roles",roles);
+        return "admin/role-list";
+    }
+
+    @RequestMapping(
             value = {"/dashboard/role/new"},
             method = {RequestMethod.GET})
     public String getDashboardRole(Model model)
@@ -146,21 +155,56 @@ public class AdminController
             method = {RequestMethod.GET})
     public String roleUpdate(Model model, @PathVariable("id") int id)
     {
+        Role role = roleService.getById(id);
+
+        model.addAttribute("role", role);
+
         return "admin/role-form";
+    }
+
+    @RequestMapping(
+            value = {"/dashboard/role/delete/{id}"},
+            method = {RequestMethod.GET})
+    public String roleDelete(Model model, @PathVariable("id") int id,
+                             RedirectAttributes redAttrs)
+    {
+        try {
+            roleService.delete(roleService.getById(id));
+        } catch (Exception ex) {
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/dashboard/role/list";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/dashboard/role/list";
     }
 
     @RequestMapping(
             value = {"/dashboard/role/save"},
             method = {RequestMethod.POST})
     public String setDashboardRole(Model model,
-                                   HttpServletRequest request,
-                                   HttpServletResponse response,
+                                   RedirectAttributes redAttrs,
                                    @RequestParam("roleId") String id,
                                    @RequestParam("name") String name)
     {
-        Role role = new Role();
-        role.setName(name);
-        roleService.save(role);
-        return "admin/dashboard";
+        Role role;
+
+        try
+        {
+            if ((id.trim().length() > 0))
+                role = roleService.getById(Integer.parseInt(id));
+            else
+                role = new Role();
+
+            role.setName(name);
+            roleService.save(role);
+
+        } catch (Exception ex){
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/dashboard/role/new";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/dashboard/role/new";
     }
 }
