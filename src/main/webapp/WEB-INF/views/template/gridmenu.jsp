@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">
+                    <a href="<c:url value="/dashboard"/>">
                         <i class="icon wb-dashboard"></i>
                         <span>Dashboard</span>
                     </a>

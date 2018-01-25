@@ -37,7 +37,6 @@
                 <div class="col-md-6">
                     <!-- Example Basic Form (Form row) -->
                     <div class="example-wrap">
-                        <h4 class="example-title">Basic Form (Form row)</h4>
                         <c:if test="${!empty result}">
                             <cm:alert_wizard title="${result == 'success' ? 'User successfuly saved' :
                                                                             'Sorry, the error was occured, try again'}"

@@ -13,6 +13,7 @@
 
 <tiles:putAttribute name="page-header">
     <h1 class="page-title">Admin Page</h1>
+    <cm:breadcrumb/>
 </tiles:putAttribute>
 
 <tiles:putAttribute name="page-content">

@@ -1,7 +1,11 @@
 package kg.edu.iaau.pitv.controller;
 
+import kg.edu.iaau.pitv.model.Block;
+import kg.edu.iaau.pitv.model.Device;
 import kg.edu.iaau.pitv.model.Role;
 import kg.edu.iaau.pitv.model.User;
+import kg.edu.iaau.pitv.service.BlockService;
+import kg.edu.iaau.pitv.service.DeviceService;
 import kg.edu.iaau.pitv.service.RoleService;
 import kg.edu.iaau.pitv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,12 @@ public class AdminController
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    BlockService blockService;
+
+    @Autowired
+    DeviceService deviceService;
 
     /********* DASHBOARD ********/
     @RequestMapping(
@@ -145,7 +155,7 @@ public class AdminController
     @RequestMapping(
             value = {"/dashboard/role/new"},
             method = {RequestMethod.GET})
-    public String getDashboardRole(Model model)
+    public String roleAdd(Model model)
     {
         return "admin/role-form";
     }
@@ -182,7 +192,7 @@ public class AdminController
     @RequestMapping(
             value = {"/dashboard/role/save"},
             method = {RequestMethod.POST})
-    public String setDashboardRole(Model model,
+    public String roleSave(Model model,
                                    RedirectAttributes redAttrs,
                                    @RequestParam("roleId") String id,
                                    @RequestParam("name") String name)
@@ -206,5 +216,163 @@ public class AdminController
 
         redAttrs.addFlashAttribute("result", "success");
         return "redirect:/dashboard/role/new";
+    }
+
+    /********* BLOCK ********/
+    @RequestMapping(
+            value = {"/dashboard/block/list"},
+            method = {RequestMethod.GET})
+    public String blockList(Model model)
+    {
+        List<Block> blocks = blockService.getAll();
+
+        model.addAttribute("blocks",blocks);
+        return "admin/block-list";
+    }
+
+    @RequestMapping(
+            value = {"/dashboard/block/new"},
+            method = {RequestMethod.GET})
+    public String blockAdd(Model model)
+    {
+        return "admin/block-form";
+    }
+
+    @RequestMapping(
+            value = {"/dashboard/block/update/{id}"},
+            method = {RequestMethod.GET})
+    public String blockUpdate(Model model, @PathVariable("id") int id)
+    {
+        Block block = blockService.getById(id);
+
+        model.addAttribute("block", block);
+
+        return "admin/block-form";
+    }
+
+    @RequestMapping(
+            value = {"/dashboard/block/delete/{id}"},
+            method = {RequestMethod.GET})
+    public String blockDelete(Model model, @PathVariable("id") int id,
+                             RedirectAttributes redAttrs)
+    {
+        try {
+            blockService.delete(blockService.getById(id));
+        } catch (Exception ex) {
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/dashboard/block/list";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/dashboard/block/list";
+    }
+
+    @RequestMapping(
+            value = {"/dashboard/block/save"},
+            method = {RequestMethod.POST})
+    public String blockSave(Model model,
+                                   RedirectAttributes redAttrs,
+                                   @RequestParam("blockId") String id,
+                                   @RequestParam("name") String name)
+    {
+        Block block;
+
+        try
+        {
+            if ((id.trim().length() > 0))
+                block = blockService.getById(Integer.parseInt(id));
+            else
+                block = new Block();
+
+            block.setName(name);
+            blockService.save(block);
+
+        } catch (Exception ex){
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/dashboard/block/new";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/dashboard/block/new";
+    }
+
+    /********* DEVICE ********/
+    @RequestMapping(
+            value = {"/dashboard/device/list"},
+            method = {RequestMethod.GET})
+    public String deviceList(Model model)
+    {
+        List<Device> devices = deviceService.getAll();
+
+        model.addAttribute("devices",devices);
+        return "admin/device-list";
+    }
+
+    @RequestMapping(
+            value = {"/dashboard/device/new"},
+            method = {RequestMethod.GET})
+    public String deviceAdd(Model model)
+    {
+        return "admin/device-form";
+    }
+
+    @RequestMapping(
+            value = {"/dashboard/device/update/{id}"},
+            method = {RequestMethod.GET})
+    public String deviceUpdate(Model model, @PathVariable("id") int id)
+    {
+        Device device = deviceService.getById(id);
+
+        model.addAttribute("device", device);
+
+        return "admin/device-form";
+    }
+
+    @RequestMapping(
+            value = {"/dashboard/device/delete/{id}"},
+            method = {RequestMethod.GET})
+    public String deviceDelete(Model model, @PathVariable("id") int id,
+                              RedirectAttributes redAttrs)
+    {
+        try {
+            deviceService.delete(deviceService.getById(id));
+        } catch (Exception ex) {
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/dashboard/device/list";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/dashboard/device/list";
+    }
+
+    @RequestMapping(
+            value = {"/dashboard/device/save"},
+            method = {RequestMethod.POST})
+    public String deviceSave(Model model,
+                             RedirectAttributes redAttrs,
+                             @RequestParam("deviceId") String id,
+                             @RequestParam("ip") String ip,
+                             @RequestParam("password") String password)
+    {
+        Device device;
+
+        try
+        {
+            if ((id.trim().length() > 0))
+                device = deviceService.getById(Integer.parseInt(id));
+            else
+                device = new Device();
+
+            device.setIp(ip);
+            device.setPassword(password);
+            deviceService.save(device);
+
+        } catch (Exception ex){
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/dashboard/device/new";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/dashboard/device/new";
     }
 }

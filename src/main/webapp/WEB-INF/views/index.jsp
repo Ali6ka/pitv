@@ -12,16 +12,17 @@
     </tiles:putAttribute>
 
     <tiles:putAttribute name="page-header">
-            <h1 class="page-title">Menu Collapsed</h1>
+        <h1 class="page-title">Home page</h1>
+        <cm:breadcrumb/>
     </tiles:putAttribute>
     <tiles:putAttribute name="page-content">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">DEMO CONTENT</h3>
-                </div>
-                <div class="panel-body __web-inspector-hide-shortcut__">
-                    <p>Liberatione, pueros dissentio athenis inventore morborum efficiat facere</p>
-                </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Welcome</h3>
             </div>
+            <div class="panel-body __web-inspector-hide-shortcut__">
+                <p>Media content monitoring system of International Alatoo University</p>
+            </div>
+        </div>
     </tiles:putAttribute>
 </tiles:insertDefinition>
