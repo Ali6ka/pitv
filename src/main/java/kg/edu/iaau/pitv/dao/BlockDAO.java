@@ -9,5 +9,4 @@ public interface BlockDAO extends JpaRepository<Block, Integer>
 {
     public Block findByName(String name);
 
-    public List<Block> findAllByRole(int roleId);
 }

@@ -48,12 +48,12 @@
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <button type="submit" class="btn btn-primary btn-block btn-lg mt-40">Sign in</button>
                         </form>
-                        <p>Still no account? Please go to <a href="register-v3.html">Sign up</a></p>
+                        <p>Still no account? Please ask administrator</p>
                     </div>
                 </div>
 
                 <footer class="page-copyright page-copyright-inverse">
-                    <p>WEBSITE BY amazingSurge</p>
+                    <p>WEBSITE BY IAU</p>
                     <p>© 2018. All RIGHT RESERVED.</p>
                     <div class="social">
                         <a class="btn btn-icon btn-pure" href="javascript:void(0)">

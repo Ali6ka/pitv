@@ -9,7 +9,7 @@
         <div class="scrollable-container" style="height: 844.984px; width: 275px;">
             <div class="scrollable-content" style="width: 260px;">
                 <ul class="site-menu" data-plugin="menu" style="transform: translate3d(0px, 0px, 0px);">
-                    <li class="site-menu-category">General</li>
+                    <li class="site-menu-category">User Role management</li>
                     <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                             <i class="site-menu-icon fa-users" aria-hidden="true"></i>
@@ -48,22 +48,46 @@
                             </li>
                         </ul>
                     </li>
-                    <div class="site-menubar-section">
-                        <h5>
-                            Milestone
-                            <span class="float-right">30%</span>
-                        </h5>
-                        <div class="progress progress-xs">
-                            <div class="progress-bar active" style="width: 30%;" role="progressbar"></div>
-                        </div>
-                        <h5>
-                            Release
-                            <span class="float-right">60%</span>
-                        </h5>
-                        <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-warning" style="width: 60%;" role="progressbar"></div>
-                        </div>
-                    </div>
+                    <li class="site-menu-category">Device management</li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon wb-table" aria-hidden="true"></i>
+                            <span class="site-menu-title">Block</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/dashboard/block/list"/>">
+                                    <span class="site-menu-title">Block list</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/dashboard/block/new"/>">
+                                    <span class="site-menu-title">Create block</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon wb-extension" aria-hidden="true"></i>
+                            <span class="site-menu-title">Device</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/dashboard/device/list"/>">
+                                    <span class="site-menu-title">Device list</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/dashboard/device/new"/>">
+                                    <span class="site-menu-title">Create device</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="scrollable-bar scrollable-bar-vertical is-disabled scrollable-bar-hide" draggable="false">

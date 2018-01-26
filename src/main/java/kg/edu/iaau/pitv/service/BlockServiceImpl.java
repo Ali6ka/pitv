@@ -29,12 +29,6 @@ public class BlockServiceImpl implements BlockService
     }
 
     @Override
-    public List<Block> getAllByRole(int roleId)
-    {
-        return blockDAO.findAllByRole(roleId);
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public Block getByName(String name)
     {

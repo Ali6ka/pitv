@@ -34,7 +34,7 @@
     <div class="panel">
         <div class="panel-body container-fluid">
             <div class="row row-lg">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <!-- Example Basic Form (Form row) -->
                     <div class="example-wrap">
                         <c:if test="${!empty result}">
@@ -75,13 +75,13 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="roles"> Roles: <sup class="requiredStar">*</sup></label>
                                     <select class="form-control select2-hidden-accessible" multiple="" data-plugin="select2"
-                                            data-y-value="${roles[0].name}"
                                             data-select2-id="4" tabindex="-1" aria-hidden="true"
                                             name="roles" id="roles" placeholder="Choose roles"
                                             oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
                                             oninput="setCustomValidity('')" required>
                                         <c:forEach items="${roles}" var="role">
-                                            <option value="${role.id}" >${fn:toLowerCase(role.name)}</option>
+                                            <option value="${role.id}"
+                                                ${user.}>${fn:toLowerCase(role.name)}</option>
                                         </c:forEach>
                                     </select>
                                 </div>

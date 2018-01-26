@@ -9,7 +9,7 @@
 
     <tiles:putAttribute name="title" value="Access Denied" />
     <tiles:putAttribute name="sidebar">
-        <cm:sidebarAdmin/>
+        <cm:sidebar/>
     </tiles:putAttribute>
 
     <tiles:putAttribute name="page-header">
@@ -25,7 +25,7 @@
             <a class="btn btn-primary btn-round" href="<c:url value="/" />">GO TO HOME PAGE</a>
 
             <footer class="page-copyright">
-                <p>WEBSITE BY amazingSurge</p>
+                <p>WEBSITE BY IAU</p>
                 <p>© 2018. All RIGHT RESERVED.</p>
                 <div class="social">
                     <a class="btn btn-icon btn-pure" href="javascript:void(0)">

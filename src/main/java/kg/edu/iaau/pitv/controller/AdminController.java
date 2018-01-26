@@ -235,6 +235,9 @@ public class AdminController
             method = {RequestMethod.GET})
     public String blockAdd(Model model)
     {
+        List<Role> roles = roleService.getAll();
+
+        model.addAttribute("roles",roles);
         return "admin/block-form";
     }
 
@@ -313,6 +316,9 @@ public class AdminController
             method = {RequestMethod.GET})
     public String deviceAdd(Model model)
     {
+        List<Block> blocks = blockService.getAll();
+
+        model.addAttribute("blocks", blocks);
         return "admin/device-form";
     }
 
@@ -322,8 +328,10 @@ public class AdminController
     public String deviceUpdate(Model model, @PathVariable("id") int id)
     {
         Device device = deviceService.getById(id);
+        List<Block> blocks = blockService.getAll();
 
         model.addAttribute("device", device);
+        model.addAttribute("blocks", blocks);
 
         return "admin/device-form";
     }
@@ -352,7 +360,9 @@ public class AdminController
                              RedirectAttributes redAttrs,
                              @RequestParam("deviceId") String id,
                              @RequestParam("ip") String ip,
-                             @RequestParam("password") String password)
+                             @RequestParam("login") String login,
+                             @RequestParam("password") String password,
+                             @RequestParam("block") int blockId)
     {
         Device device;
 
@@ -364,7 +374,9 @@ public class AdminController
                 device = new Device();
 
             device.setIp(ip);
+            device.setLogin(login);
             device.setPassword(password);
+            device.setBlock(blockService.getById(blockId));
             deviceService.save(device);
 
         } catch (Exception ex){

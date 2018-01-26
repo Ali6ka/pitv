@@ -13,6 +13,8 @@ public class Role
 
     private Set<User> users;
 
+    private Set<Block> blocks;
+
     /*    private Set<UserRole> userRoles;*/
 
     @Id
@@ -48,6 +50,17 @@ public class Role
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    @ManyToMany(mappedBy = "roles")
+    public Set<Block> getBlocks()
+    {
+        return blocks;
+    }
+
+    public void setBlocks(Set<Block> blocks)
+    {
+        this.blocks = blocks;
     }
 
 /*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")

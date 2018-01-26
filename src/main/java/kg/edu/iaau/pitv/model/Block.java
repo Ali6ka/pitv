@@ -12,7 +12,7 @@ public class Block
 
     private String name;
 
-    private Role role;
+    private Set<Role> roles;
 
     private Set<Device> devices;
 
@@ -42,18 +42,18 @@ public class Block
         this.name = name;
     }
 
-    @ManyToOne
-    @JoinColumn(
-            name = "role_id"
-    )
-    public Role getRole()
+    @ManyToMany
+    @JoinTable(name = "block_role",
+            joinColumns = @JoinColumn(name = "block_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public Set<Role> getRoles()
     {
-        return role;
+        return roles;
     }
 
-    public void setRole(Role role)
+    public void setRoles(Set<Role> roles)
     {
-        this.role = role;
+        this.roles = roles;
     }
 
     @OneToMany(

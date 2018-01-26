@@ -10,8 +10,6 @@ public interface BlockService
 
     public List<Block> getAll();
 
-    public List<Block> getAllByRole (int roleId);
-
     Block getByName(String name);
 
     void save(Block block);

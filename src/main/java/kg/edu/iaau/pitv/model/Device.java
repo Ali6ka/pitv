@@ -10,6 +10,8 @@ public class Device
 
     private String ip;
 
+    private String login;
+
     private String password;
 
     private Block block;
@@ -38,6 +40,17 @@ public class Device
     public void setIp(String ip)
     {
         this.ip = ip;
+    }
+
+    @Column(name="login")
+    public String getLogin()
+    {
+        return login;
+    }
+
+    public void setLogin(String login)
+    {
+        this.login = login;
     }
 
     @Column(name="password")

@@ -35,7 +35,7 @@
     <div class="panel">
         <div class="panel-body container-fluid">
             <div class="row row-lg">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <!-- Example Basic Form (Form row) -->
                     <div class="example-wrap">
                         <c:if test="${!empty result}">
