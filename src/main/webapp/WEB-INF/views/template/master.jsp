@@ -33,11 +33,11 @@
     <link rel="stylesheet" href="../../../assets/global/vendor/bootstrap-select/bootstrap-select.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/select2/select2.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/multi-select/multi-select.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/datatables.net-bs4/dataTables.bootstrap4.min.css?">
+    <link rel="stylesheet" href="../../../assets/global/vendor/datatables.net-bs4/dataTables.bootstrap4.min.css">
     <link rel="stylesheet"
-          href="../../../assets/global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.min.css?">
+          href="../../../assets/global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.min.css">
     <link rel="stylesheet"
-          href="../../../assets/global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.min.css?">
+          href="../../../assets/global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.min.css">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="../../../assets/global/fonts/web-icons/web-icons.min.css">

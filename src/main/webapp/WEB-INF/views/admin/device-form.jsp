@@ -73,7 +73,14 @@
                                                 oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
                                                 oninput="setCustomValidity('')" required>
                                             <c:forEach items="${blocks}" var="block">
-                                                <option value="${block.id}">${block.name}</option>
+                                                <c:choose>
+                                                    <c:when test="${block eq device.block}">
+                                                        <option value="${block.id}" selected>${block.name}</option>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <option value="${block.id}">${block.name}</option>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:forEach>
                                         </select>
                                     </div>

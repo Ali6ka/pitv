@@ -14,7 +14,7 @@ public interface BlockService
 
     void save(Block block);
 
-    void save(Block Block, List<String> deviceIds);
+    void save(Block Block, List<String> roleIds);
 
     void delete(Block block);
 

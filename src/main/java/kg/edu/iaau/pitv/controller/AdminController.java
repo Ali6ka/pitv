@@ -48,7 +48,7 @@ public class AdminController
         return "admin/dashboard";
     }
 
-    /********* USER ********/
+    /********************************** USER **********************************/
     @RequestMapping(
             value = {"/dashboard/user/list"},
             method = {RequestMethod.GET})
@@ -66,8 +66,8 @@ public class AdminController
     public String userAdd(Model model)
     {
         List<Role> roles = roleService.getAll();
-
         model.addAttribute("roles", roles);
+        model.addAttribute("isNew", true);
         return "admin/user-form";
     }
 
@@ -124,7 +124,14 @@ public class AdminController
             else
                 user = new User();
 
-            user.setPassword(password);
+            if(password.isEmpty()){
+                if(user.getPassword().isEmpty()){
+                    user.setPassword("aaabbb");
+                }
+            }else{
+                user.setPassword(password);
+            }
+
             user.setUsername(username);
             user.setEmail(email);
             user.setEnabled(1);
@@ -140,7 +147,7 @@ public class AdminController
     }
 
 
-    /********* ROLE ********/
+    /********************************** ROLE **********************************/
     @RequestMapping(
             value = {"/dashboard/role/list"},
             method = {RequestMethod.GET})
@@ -193,9 +200,9 @@ public class AdminController
             value = {"/dashboard/role/save"},
             method = {RequestMethod.POST})
     public String roleSave(Model model,
-                                   RedirectAttributes redAttrs,
-                                   @RequestParam("roleId") String id,
-                                   @RequestParam("name") String name)
+                           RedirectAttributes redAttrs,
+                           @RequestParam("roleId") String id,
+                           @RequestParam("name") String name)
     {
         Role role;
 
@@ -218,7 +225,7 @@ public class AdminController
         return "redirect:/dashboard/role/new";
     }
 
-    /********* BLOCK ********/
+    /********************************** BLOCK **********************************/
     @RequestMapping(
             value = {"/dashboard/block/list"},
             method = {RequestMethod.GET})
@@ -238,6 +245,7 @@ public class AdminController
         List<Role> roles = roleService.getAll();
 
         model.addAttribute("roles",roles);
+        model.addAttribute("isNew",true);
         return "admin/block-form";
     }
 
@@ -247,8 +255,10 @@ public class AdminController
     public String blockUpdate(Model model, @PathVariable("id") int id)
     {
         Block block = blockService.getById(id);
+        List<Role> roles = roleService.getAll();
 
         model.addAttribute("block", block);
+        model.addAttribute("roles", roles);
 
         return "admin/block-form";
     }
@@ -274,9 +284,10 @@ public class AdminController
             value = {"/dashboard/block/save"},
             method = {RequestMethod.POST})
     public String blockSave(Model model,
-                                   RedirectAttributes redAttrs,
-                                   @RequestParam("blockId") String id,
-                                   @RequestParam("name") String name)
+                            RedirectAttributes redAttrs,
+                            @RequestParam("blockId") String id,
+                            @RequestParam("name") String name,
+                            @RequestParam("roles") List<String> roleIds)
     {
         Block block;
 
@@ -288,7 +299,7 @@ public class AdminController
                 block = new Block();
 
             block.setName(name);
-            blockService.save(block);
+            blockService.save(block,roleIds);
 
         } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
@@ -299,7 +310,7 @@ public class AdminController
         return "redirect:/dashboard/block/new";
     }
 
-    /********* DEVICE ********/
+    /********************************** DEVICE **********************************/
     @RequestMapping(
             value = {"/dashboard/device/list"},
             method = {RequestMethod.GET})

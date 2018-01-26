@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="cm" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="f" uri="http://pitv/jstl_functions" %>
 
 <tiles:insertDefinition name="master">
 
@@ -57,7 +58,19 @@
                                                 oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
                                                 oninput="setCustomValidity('')" required>
                                             <c:forEach items="${roles}" var="role">
-                                                <option value="${role.id}">${fn:toLowerCase(role.name)}</option>
+                                                <c:if test="${isNew}">
+                                                    <option value="${role.id}">${fn:toLowerCase(role.name)}</option>
+                                                </c:if>
+                                                <c:if test="${!isNew}">
+                                                    <c:choose>
+                                                        <c:when test='${f:containsValue(block.roles, role)}'>
+                                                            <option value="${role.id}" selected>${fn:toLowerCase(role.name)}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${role.id}">${fn:toLowerCase(role.name)}</option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:if>
                                             </c:forEach>
                                         </select>
                                     </div>

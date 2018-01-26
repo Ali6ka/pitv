@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService
     @Override
     public List<User> getAll()
     {
-        return userDAO.findAll();
+        return userDAO.findAllByOrderByUsername();
     }
 
     @Override
@@ -49,8 +49,8 @@ public class UserServiceImpl implements UserService
     public void save(User user, List<String> roleIds)
     {
         Set <Role> roles = new HashSet<>();
-
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if(user.getPassword().length() < 40)
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         for(String id : roleIds){
             roles.add(roleService.getById(Integer.parseInt(id)));
         }

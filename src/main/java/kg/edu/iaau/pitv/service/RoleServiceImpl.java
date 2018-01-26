@@ -19,7 +19,7 @@ public class RoleServiceImpl implements RoleService
     @Transactional(readOnly = true)
     public List<Role> getAll()
     {
-        return roleDAO.findAll();
+        return roleDAO.findAllByOrderByName();
     }
 
     @Override

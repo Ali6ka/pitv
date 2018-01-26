@@ -70,7 +70,7 @@
                     </li>
                     <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
-                            <i class="site-menu-icon wb-extension" aria-hidden="true"></i>
+                            <i class="site-menu-icon fa-desktop" aria-hidden="true"></i>
                             <span class="site-menu-title">Device</span>
                             <span class="site-menu-arrow"></span>
                         </a>

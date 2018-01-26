@@ -8,9 +8,9 @@
         <div class="scrollable-content" style="">
             <ul>
                 <li>
-                    <a href="apps/mailbox/mailbox.html">
-                        <i class="icon wb-envelope"></i>
-                        <span>Mailbox</span>
+                    <a href="<c:url value="/"/>">
+                        <i class="icon wb-home"></i>
+                        <span>Home</span>
                     </a>
                 </li>
                 <li>

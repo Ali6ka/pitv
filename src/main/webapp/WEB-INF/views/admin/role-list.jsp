@@ -53,6 +53,7 @@
                     <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Blocks</th>
                         <th class="text-center">Actions</th>
                     </tr>
                     </thead>
@@ -60,23 +61,23 @@
                     <c:forEach items="${roles}" var="role">
                         <tr class="gradeA">
                             <td>${role.name}</td>
-<%--                            <td>
-                                <c:forEach items="${user.roles}" var="role">
-                                    ${fn:toLowerCase(role.name)} /
+                            <td>
+                                <c:forEach items="${role.blocks}" var="block">
+                                    ${fn:toLowerCase(block.name)} /
                                 </c:forEach>
-                            </td>--%>
-                            <td class="actions text-center">
-                                <a href="<c:url value="/dashboard/role/update/${role.id}"/>"
-                                   class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
-                                   data-toggle="tooltip" data-original-title="Edit">
-                                    <i class="icon wb-edit" aria-hidden="true"></i>
-                                </a>
-                                <a href="<c:url value="/dashboard/role/delete/${role.id}"/>"
-                                   class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
-                                   data-toggle="tooltip" data-original-title="Remove">
-                                    <i class="icon wb-trash" aria-hidden="true"></i>
-                                </a>
                             </td>
+                                <td class="actions text-center">
+                                    <a href="<c:url value="/dashboard/role/update/${role.id}"/>"
+                                       class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                                       data-toggle="tooltip" data-original-title="Edit">
+                                        <i class="icon wb-edit" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="<c:url value="/dashboard/role/delete/${role.id}"/>"
+                                       class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
+                                       data-toggle="tooltip" data-original-title="Remove">
+                                        <i class="icon wb-trash" aria-hidden="true"></i>
+                                    </a>
+                                </td>
                         </tr>
                     </c:forEach>
                     </tbody>
