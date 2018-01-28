@@ -68,12 +68,12 @@
                             </a>
                         </td>
                         <td>${user.username}</td>
-                        <td>${user.email}</td>
                         <td>
                             <c:forEach items="${user.roles}" var="role">
-                                ${fn:toLowerCase(role.name)} /
+                                <span class="badge badge-outline badge-primary">${fn:toLowerCase(role.name)} </span>
                             </c:forEach>
                         </td>
+                        <td>${user.email}</td>
                         <td class="actions">
                             <a href="<c:url value="/dashboard/user/update/${user.id}"/>"
                                class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"

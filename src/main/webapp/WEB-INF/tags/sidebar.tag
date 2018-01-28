@@ -12,18 +12,18 @@
                     <li class="site-menu-category">General</li>
                     <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
-                            <i class="site-menu-icon wb-table" aria-hidden="true"></i>
-                            <span class="site-menu-title">Annoucements</span>
+                            <i class="site-menu-icon fa-film" aria-hidden="true"></i>
+                            <span class="site-menu-title">Posts</span>
                             <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="tables/basic.html">
-                                    <span class="site-menu-title">List</span>
+                                <a class="animsition-link" href="<c:url value="/post/list"/>">
+                                    <span class="site-menu-title">Post List</span>
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="tables/bootstrap.html">
+                                <a class="animsition-link" href="<c:url value="/post/new"/>">
                                     <span class="site-menu-title">Create new</span>
                                 </a>
                             </li>

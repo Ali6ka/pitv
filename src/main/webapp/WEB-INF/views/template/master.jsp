@@ -24,15 +24,18 @@
     <link rel="stylesheet" href="../../../assets/css/site.min.css">
 
     <!-- Plugins -->
+    <link rel="stylesheet" href="../../../assets/global/vendor/flag-icon-css/flag-icon.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/animsition/animsition.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/asscrollable/asScrollable.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/switchery/switchery.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/intro-js/introjs.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/slidepanel/slidePanel.css">
-    <link rel="stylesheet" href="../../../assets/global /vendor/flag-icon-css/flag-icon.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/bootstrap-select/bootstrap-select.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/select2/select2.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/multi-select/multi-select.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/dropify/dropify.css">
+    <link rel="stylesheet" href="../../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/datatables.net-bs4/dataTables.bootstrap4.min.css">
     <link rel="stylesheet"
           href="../../../assets/global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.min.css">
@@ -63,6 +66,16 @@
     </div>
     <div class="page-content">
         <tiles:insertAttribute name="page-content" />
+
+        <div class="site-action" data-plugin="actionBtn">
+            <a href="<c:url value="/post/new"/> ">
+                <button type="button" class="site-action-toggle btn-raised btn btn-info btn-floating">
+                    <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
+                    <i class="back-icon wb-close animation-scale-up" aria-hidden="true"></i>
+                </button>
+            </a>
+            </div>
+        </div>
     </div>
 </div>
 <tiles:insertAttribute name="footer" />
@@ -99,6 +112,17 @@
 <script src="../../../assets/global/vendor/datatables.net-buttons/dataTables.buttons.min.js?"></script>
 <script src="../../../assets/global/vendor/asrange/jquery-asRange.min.js"></script>
 <script src="../../../assets/global/vendor/bootbox/bootbox.js"></script>
+<script src="../../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+
+<script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload.js"></script>
+<script src="../../../assets/global/vendor/blueimp-load-image/load-image.all.min.js"></script>
+<script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-process.js"></script>
+<script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-image.js"></script>
+<script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-audio.js"></script>
+<script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-video.js"></script>
+<script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
+<script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
+<script src="../../../assets/global/vendor/dropify/dropify.min.js"></script>
 
 <!-- Scripts -->
 <script src="../../../assets/global/js/Component.js"></script>
@@ -125,6 +149,7 @@
 <script src="../../../assets/global/js/Plugin/multi-select.js"></script>
 <script src="../../../assets/global/js/Plugin/datatables.js"></script>
 <script src="../../../assets/examples/js/tables/datatable.js"></script>
+<script src="../../../assets/global/js/Plugin/dropify.js"></script>
 
 
 

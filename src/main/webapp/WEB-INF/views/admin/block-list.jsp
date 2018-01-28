@@ -57,7 +57,7 @@
                             </td>
                             <td>
                                 <c:forEach items="${block.roles}" var="role">
-                                    ${fn:toLowerCase(role.name)} /
+                                    <span class="badge badge-outline badge-primary">${fn:toLowerCase(role.name)}  </span>
                                 </c:forEach>
                             </td>
                             <td class="actions text-center">

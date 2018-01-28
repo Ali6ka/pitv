@@ -20,12 +20,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="apps/contacts/contacts.html">
-                        <i class="icon wb-user"></i>
-                        <span>Contacts</span>
-                    </a>
-                </li>
-                <li>
                     <a href="apps/media/overview.html">
                         <i class="icon wb-camera"></i>
                         <span>Media</span>
@@ -35,18 +29,6 @@
                     <a href="apps/documents/categories.html">
                         <i class="icon wb-order"></i>
                         <span>Documents</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="apps/projects/projects.html">
-                        <i class="icon wb-image"></i>
-                        <span>Project</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="apps/forum/forum.html">
-                        <i class="icon wb-chat-group"></i>
-                        <span>Forum</span>
                     </a>
                 </li>
                 <li>

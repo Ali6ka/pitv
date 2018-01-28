@@ -67,13 +67,11 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" data-animation="scale-up"
                        aria-expanded="false" role="button">
-                        <span class="flag-icon flag-icon-us"></span>
+                        <span class="flag-icon flag-icon-gb"></span></a>
                     </a>
                     <div class="dropdown-menu" role="menu">
                         <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                            <span class="flag-icon flag-icon-gb"></span> English</a>
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-                            <span class="flag-icon flag-icon-fr"></span> French</a>
+                            <span class="flag-icon flag-icon-fr"></span> Russian</a>
                         <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
                             <span class="flag-icon flag-icon-cn"></span> Chinese</a>
                         <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
@@ -92,7 +90,6 @@
                     </a>
                     <div class="dropdown-menu" role="menu">
                         <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Billing</a>
                         <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
                         <div class="dropdown-divider" role="presentation"></div>
                         <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
@@ -127,44 +124,11 @@
                                     <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
                                         <div class="media">
                                             <div class="pr-10">
-                                                <i class="icon wb-user bg-green-600 white icon-circle" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading">Completed the task</h6>
-                                                <time class="media-meta" datetime="2018-06-11T18:29:20+08:00">2 days ago</time>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                                        <div class="media">
-                                            <div class="pr-10">
-                                                <i class="icon wb-settings bg-red-600 white icon-circle" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading">Settings updated</h6>
-                                                <time class="media-meta" datetime="2018-06-11T14:05:00+08:00">2 days ago</time>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                                        <div class="media">
-                                            <div class="pr-10">
                                                 <i class="icon wb-calendar bg-blue-600 white icon-circle" aria-hidden="true"></i>
                                             </div>
                                             <div class="media-body">
                                                 <h6 class="media-heading">Event started</h6>
                                                 <time class="media-meta" datetime="2018-06-10T13:50:18+08:00">3 days ago</time>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                                        <div class="media">
-                                            <div class="pr-10">
-                                                <i class="icon wb-chat bg-orange-600 white icon-circle" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading">Message received</h6>
-                                                <time class="media-meta" datetime="2018-06-10T12:34:48+08:00">3 days ago</time>
                                             </div>
                                         </div>
                                     </a>
