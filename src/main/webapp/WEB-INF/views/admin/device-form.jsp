@@ -16,14 +16,13 @@
         <h1 class="page-title">Device form</h1>
         <cm:breadcrumb/>
         <div class="page-header-actions">
-            <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
-                    data-toggle="tooltip" data-original-title="Edit">
-                <i class="icon wb-pencil" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
-                    data-toggle="tooltip" data-original-title="Refresh">
-                <i class="icon wb-refresh" aria-hidden="true"></i>
-            </button>
+            <div class="mb-15">
+                <a href="<c:url value="/admin/device/list"/> ">
+                    <button id="addToTable" class="btn btn-outline btn-primary" type="button">
+                        <i class="icon wb-list" aria-hidden="true"></i> Device list
+                    </button>
+                </a>
+            </div>
         </div>
     </tiles:putAttribute>
 
@@ -39,7 +38,7 @@
                                                                             'Sorry, the error was occured, try again'}"
                                                  alert_type="${result == 'success' ? 'success' : 'danger'}" />
                             </c:if>
-                            <form action="<c:url value='/dashboard/device/save'/>" method="post" class="admin-form">
+                            <form action="<c:url value='/admin/device/save'/>" method="post" class="admin-form">
                                 <div class="tab-content">
                                     <div class="form-group">
                                         <label class="form-control-label" for="ip">IP address <sup class="requiredStar">*</sup>

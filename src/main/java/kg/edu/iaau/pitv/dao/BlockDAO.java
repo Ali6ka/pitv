@@ -8,6 +8,7 @@ import java.util.List;
 public interface BlockDAO extends JpaRepository<Block, Integer>
 {
     public List<Block> findAllByOrderByName();
+    
     public Block findByName(String name);
 
 }

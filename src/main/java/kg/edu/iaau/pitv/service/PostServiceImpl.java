@@ -74,13 +74,13 @@ public class PostServiceImpl implements PostService
                 {
                     FTPUploader ftpUploader = new FTPUploader(device.getIp(),
                             device.getLogin(), device.getPassword());
-                    ftpUploader.uploadFile(externalResource+"/"+fileName, fileName, "ali");
-                    ftpUploader.disconnect();
-
+                    ftpUploader.uploadFile(externalResource + fileName, fileName, "/files/");
                 }
             }
 
-        }catch (Exception ex){}
+        }catch (Exception ex){
+            return;
+        }
 
         post.setBlocks(blocks);
         postDAO.saveAndFlush(post);

@@ -18,4 +18,6 @@ public interface BlockService
 
     void delete(Block block);
 
+    List<Block> getUserAvailableBlocks(int id);
+
 }

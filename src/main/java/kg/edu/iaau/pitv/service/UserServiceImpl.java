@@ -5,6 +5,7 @@ import kg.edu.iaau.pitv.dao.UserDAO;
 import kg.edu.iaau.pitv.model.Role;
 import kg.edu.iaau.pitv.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,10 +39,25 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    public User getCurrentUser()
+    {
+        Object principal = SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        User user =null;
+
+        if(!principal.toString().equals("anonymousUser"))
+            user = findByUsername(((org.springframework.security.core.userdetails.User)
+                    principal).getUsername());
+
+        return user;
+    }
+
+    @Override
     public void save(User user)
     {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleService.getAll()));
+        if(user.getPassword().length() < 40)
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userDAO.save(user);
     }
 

@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<c:url value="/dashboard"/>">
+                    <a href="<c:url value="/admin"/>">
                         <i class="icon wb-dashboard"></i>
                         <span>Dashboard</span>
                     </a>

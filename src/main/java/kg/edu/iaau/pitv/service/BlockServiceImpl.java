@@ -3,10 +3,12 @@ package kg.edu.iaau.pitv.service;
 import kg.edu.iaau.pitv.dao.BlockDAO;
 import kg.edu.iaau.pitv.model.Block;
 import kg.edu.iaau.pitv.model.Role;
+import kg.edu.iaau.pitv.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +21,9 @@ public class BlockServiceImpl implements BlockService
 
     @Autowired
     RoleService roleService;
+
+    @Autowired
+    UserService userService;
 
     @Override
     @Transactional(readOnly = true)
@@ -68,5 +73,28 @@ public class BlockServiceImpl implements BlockService
     public void delete(Block block)
     {
         blockDAO.delete(block);
+    }
+
+    @Override
+    @Transactional
+    public List<Block> getUserAvailableBlocks(int id)
+    {
+        List<Block> result = new ArrayList();
+
+        User user = userService.getById(id);
+        List<Block> blocks = getAll();
+        Set<Role> roles = user.getRoles();
+
+        for(Block block : blocks){
+            for (Role role : roles){
+                if (role.getBlocks().contains(block))
+                {
+                    result.add(block);
+                    break;
+                }
+            }
+        }
+
+        return result;
     }
 }

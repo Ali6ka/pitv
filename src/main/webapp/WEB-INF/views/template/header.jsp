@@ -1,6 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page pageEncoding="UTF-8"%>
 
 <!-- Page header -->
@@ -83,16 +84,18 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
                        data-animation="scale-up" role="button">
-                <span class="avatar avatar-online">
-                  <img src="../../../assets/global/portraits/5.jpg" alt="...">
-                  <i></i>
-                </span>
+                        <span class="avatar avatar-online">
+                            <img src="<c:url value="/resources/${currentUser.avatar}"/>" alt="...">
+                        </span>
+                        <sec:authorize access="isAuthenticated()">
+                            <sec:authentication property="principal.username" />
+                        </sec:authorize>
                     </a>
                     <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
+                        <a class="dropdown-item" href="<c:url value="/user/profile"/>" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
+                        <a class="dropdown-item" href="<c:url value="/user/details"/>" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
                         <div class="dropdown-divider" role="presentation"></div>
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+                        <a class="dropdown-item" href="<c:url value="/logout"/>" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

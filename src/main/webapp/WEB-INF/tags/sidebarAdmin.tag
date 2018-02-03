@@ -18,12 +18,12 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="<c:url value="/dashboard/user/list"/>">
+                                <a class="animsition-link" href="<c:url value="/admin/user/list"/>">
                                     <span class="site-menu-title">User list</span>
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="<c:url value="/dashboard/user/new"/>">
+                                <a class="animsition-link" href="<c:url value="/admin/user/new"/>">
                                     <span class="site-menu-title">Create user</span>
                                 </a>
                             </li>
@@ -37,12 +37,12 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="<c:url value="/dashboard/role/list"/>">
+                                <a class="animsition-link" href="<c:url value="/admin/role/list"/>">
                                     <span class="site-menu-title">Role list</span>
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="<c:url value="/dashboard/role/new"/>">
+                                <a class="animsition-link" href="<c:url value="/admin/role/new"/>">
                                     <span class="site-menu-title">Create role</span>
                                 </a>
                             </li>
@@ -57,12 +57,12 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="<c:url value="/dashboard/block/list"/>">
+                                <a class="animsition-link" href="<c:url value="/admin/block/list"/>">
                                     <span class="site-menu-title">Block list</span>
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="<c:url value="/dashboard/block/new"/>">
+                                <a class="animsition-link" href="<c:url value="/admin/block/new"/>">
                                     <span class="site-menu-title">Create block</span>
                                 </a>
                             </li>
@@ -76,12 +76,12 @@
                         </a>
                         <ul class="site-menu-sub">
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="<c:url value="/dashboard/device/list"/>">
+                                <a class="animsition-link" href="<c:url value="/admin/device/list"/>">
                                     <span class="site-menu-title">Device list</span>
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="<c:url value="/dashboard/device/new"/>">
+                                <a class="animsition-link" href="<c:url value="/admin/device/new"/>">
                                     <span class="site-menu-title">Create device</span>
                                 </a>
                             </li>

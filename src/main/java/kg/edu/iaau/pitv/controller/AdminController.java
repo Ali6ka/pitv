@@ -9,6 +9,7 @@ import kg.edu.iaau.pitv.service.DeviceService;
 import kg.edu.iaau.pitv.service.RoleService;
 import kg.edu.iaau.pitv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController
 {
 
@@ -39,9 +42,12 @@ public class AdminController
     @Autowired
     DeviceService deviceService;
 
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     /********* DASHBOARD ********/
     @RequestMapping(
-            value = {"/dashboard"},
+            value = {""},
             method = {RequestMethod.GET})
     public String getDashboard()
     {
@@ -50,7 +56,7 @@ public class AdminController
 
     /********************************** USER **********************************/
     @RequestMapping(
-            value = {"/dashboard/user/list"},
+            value = {"/user/list"},
             method = {RequestMethod.GET})
     public String userList(Model model)
     {
@@ -61,18 +67,19 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/user/new"},
+            value = {"/user/new"},
             method = {RequestMethod.GET})
     public String userAdd(Model model)
     {
         List<Role> roles = roleService.getAll();
         model.addAttribute("roles", roles);
         model.addAttribute("isNew", true);
+
         return "admin/user-form";
     }
 
     @RequestMapping(
-            value = {"/dashboard/user/update/{id}"},
+            value = {"/user/update/{id}"},
             method = {RequestMethod.GET})
     public String userUpdate(Model model, @PathVariable("id") int id)
     {
@@ -88,7 +95,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/user/delete/{id}"},
+            value = {"/user/delete/{id}"},
             method = {RequestMethod.GET})
     public String userDelete(Model model, @PathVariable("id") int id,
                              RedirectAttributes redAttrs)
@@ -97,15 +104,15 @@ public class AdminController
             userService.delete(userService.getById(id));
         } catch (Exception ex) {
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/dashboard/user/list";
+            return "redirect:/user/list";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/dashboard/user/list";
+        return "redirect:/user/list";
     }
 
     @RequestMapping(
-            value = {"/dashboard/user/save"},
+            value = {"/user/save"},
             method = {RequestMethod.POST})
     public String userSave(Model model,
                            RedirectAttributes redAttrs,
@@ -117,12 +124,20 @@ public class AdminController
     {
         User user;
 
+        Date currentDate = new Date(new java.util.Date().getTime());
+
         try
         {
             if ((id.trim().length() > 0))
+            {
                 user = userService.getById(Integer.parseInt(id));
+            }
             else
+            {
                 user = new User();
+                user.setDateOfActivation(currentDate);
+                user.setEnabled(1);
+            }
 
             if(password.isEmpty()){
                 if(user.getPassword().isEmpty()){
@@ -134,22 +149,21 @@ public class AdminController
 
             user.setUsername(username);
             user.setEmail(email);
-            user.setEnabled(1);
 
             userService.save(user, roles);
         } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/dashboard/user/new";
+            return "redirect:/admin/user/new";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/dashboard/user/new";
+        return "redirect:/admin/user/new";
     }
 
 
     /********************************** ROLE **********************************/
     @RequestMapping(
-            value = {"/dashboard/role/list"},
+            value = {"/role/list"},
             method = {RequestMethod.GET})
     public String roleList(Model model)
     {
@@ -160,7 +174,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/role/new"},
+            value = {"/role/new"},
             method = {RequestMethod.GET})
     public String roleAdd(Model model)
     {
@@ -168,7 +182,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/role/update/{id}"},
+            value = {"/role/update/{id}"},
             method = {RequestMethod.GET})
     public String roleUpdate(Model model, @PathVariable("id") int id)
     {
@@ -180,7 +194,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/role/delete/{id}"},
+            value = {"/role/delete/{id}"},
             method = {RequestMethod.GET})
     public String roleDelete(Model model, @PathVariable("id") int id,
                              RedirectAttributes redAttrs)
@@ -189,15 +203,15 @@ public class AdminController
             roleService.delete(roleService.getById(id));
         } catch (Exception ex) {
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/dashboard/role/list";
+            return "redirect:/role/list";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/dashboard/role/list";
+        return "redirect:/role/list";
     }
 
     @RequestMapping(
-            value = {"/dashboard/role/save"},
+            value = {"/role/save"},
             method = {RequestMethod.POST})
     public String roleSave(Model model,
                            RedirectAttributes redAttrs,
@@ -218,16 +232,16 @@ public class AdminController
 
         } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/dashboard/role/new";
+            return "redirect:/role/new";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/dashboard/role/new";
+        return "redirect:/role/new";
     }
 
     /********************************** BLOCK **********************************/
     @RequestMapping(
-            value = {"/dashboard/block/list"},
+            value = {"/block/list"},
             method = {RequestMethod.GET})
     public String blockList(Model model)
     {
@@ -238,7 +252,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/block/new"},
+            value = {"/block/new"},
             method = {RequestMethod.GET})
     public String blockAdd(Model model)
     {
@@ -250,7 +264,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/block/update/{id}"},
+            value = {"/block/update/{id}"},
             method = {RequestMethod.GET})
     public String blockUpdate(Model model, @PathVariable("id") int id)
     {
@@ -264,7 +278,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/block/delete/{id}"},
+            value = {"/block/delete/{id}"},
             method = {RequestMethod.GET})
     public String blockDelete(Model model, @PathVariable("id") int id,
                              RedirectAttributes redAttrs)
@@ -273,15 +287,15 @@ public class AdminController
             blockService.delete(blockService.getById(id));
         } catch (Exception ex) {
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/dashboard/block/list";
+            return "redirect:/block/list";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/dashboard/block/list";
+        return "redirect:/block/list";
     }
 
     @RequestMapping(
-            value = {"/dashboard/block/save"},
+            value = {"/block/save"},
             method = {RequestMethod.POST})
     public String blockSave(Model model,
                             RedirectAttributes redAttrs,
@@ -303,16 +317,16 @@ public class AdminController
 
         } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/dashboard/block/new";
+            return "redirect:/block/new";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/dashboard/block/new";
+        return "redirect:/block/new";
     }
 
     /********************************** DEVICE **********************************/
     @RequestMapping(
-            value = {"/dashboard/device/list"},
+            value = {"/device/list"},
             method = {RequestMethod.GET})
     public String deviceList(Model model)
     {
@@ -323,7 +337,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/device/new"},
+            value = {"/device/new"},
             method = {RequestMethod.GET})
     public String deviceAdd(Model model)
     {
@@ -334,7 +348,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/device/update/{id}"},
+            value = {"/device/update/{id}"},
             method = {RequestMethod.GET})
     public String deviceUpdate(Model model, @PathVariable("id") int id)
     {
@@ -348,7 +362,7 @@ public class AdminController
     }
 
     @RequestMapping(
-            value = {"/dashboard/device/delete/{id}"},
+            value = {"/device/delete/{id}"},
             method = {RequestMethod.GET})
     public String deviceDelete(Model model, @PathVariable("id") int id,
                               RedirectAttributes redAttrs)
@@ -357,15 +371,15 @@ public class AdminController
             deviceService.delete(deviceService.getById(id));
         } catch (Exception ex) {
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/dashboard/device/list";
+            return "redirect:/device/list";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/dashboard/device/list";
+        return "redirect:/device/list";
     }
 
     @RequestMapping(
-            value = {"/dashboard/device/save"},
+            value = {"/device/save"},
             method = {RequestMethod.POST})
     public String deviceSave(Model model,
                              RedirectAttributes redAttrs,
@@ -392,10 +406,10 @@ public class AdminController
 
         } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/dashboard/device/new";
+            return "redirect:/device/new";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/dashboard/device/new";
+        return "redirect:/device/new";
     }
 }

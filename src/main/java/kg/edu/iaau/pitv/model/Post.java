@@ -85,7 +85,6 @@ public class Post
     }
 
     @OneToMany
-
     public Set<Block> getBlocks()
     {
         return blocks;

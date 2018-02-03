@@ -15,18 +15,13 @@
         <h1 class="page-title">My post list</h1>
         <cm:breadcrumb/>
         <div class="page-header-actions">
-            <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
-                    data-toggle="tooltip" data-original-title="Edit">
-                <i class="icon wb-pencil" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
-                    data-toggle="tooltip" data-original-title="Refresh">
-                <i class="icon wb-refresh" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
-                    data-toggle="tooltip" data-original-title="Setting">
-                <i class="icon wb-settings" aria-hidden="true"></i>
-            </button>
+            <div class="mb-15">
+                <a href="<c:url value="/post/new"/> ">
+                    <button class="btn btn-outline btn-primary" type="button">
+                        <i class="icon wb-plus" aria-hidden="true"></i> Create new
+                    </button>
+                </a>
+            </div>
         </div>
     </tiles:putAttribute>
 
@@ -38,17 +33,6 @@
                     'Sorry, the error was occured, try again'}"
                                      alert_type="${result == 'success' ? 'success' : 'danger'}" />
                 </c:if>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-15">
-                            <a href="<c:url value="/post/new"/> ">
-                                <button class="btn btn-outline btn-primary" type="button">
-                                    <i class="icon wb-plus" aria-hidden="true"></i> Create new
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 <table class="table table-bordered table-hover table-striped" cellspacing="0" id="exampleAddRow">
                     <thead>
                     <tr>
@@ -70,7 +54,7 @@
                             <td>${dateUntil}</td>
                             <td>
                                 <c:forEach items="${post.blocks}" var="block">
-                                    ${block.name} /
+                                    <span class="badge badge-outline badge-primary">${block.name}</span>
                                 </c:forEach>
                             </td>
                             <td>${post.author}</td>

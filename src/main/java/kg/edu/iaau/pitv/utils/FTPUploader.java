@@ -33,7 +33,14 @@ public class FTPUploader
             throws Exception {
         try(InputStream input = new FileInputStream(new File(localFileFullName))){
             this.ftp.storeFile(hostDir + fileName, input);
+        }catch (Exception ex){
+            System.out.print("fewfew");
         }
+        finally
+        {
+            disconnect();
+        }
+
     }
 
     public void disconnect(){

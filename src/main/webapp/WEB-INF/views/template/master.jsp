@@ -35,7 +35,10 @@
     <link rel="stylesheet" href="../../../assets/global/vendor/multi-select/multi-select.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/dropify/dropify.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/jquery-wizard/jquery-wizard.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/formvalidation/formValidation.css">
     <link rel="stylesheet" href="../../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../../../assets/examples/css/pages/profile.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/datatables.net-bs4/dataTables.bootstrap4.min.css">
     <link rel="stylesheet"
           href="../../../assets/global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.min.css">
@@ -123,6 +126,10 @@
 <script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
 <script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
 <script src="../../../assets/global/vendor/dropify/dropify.min.js"></script>
+<script src="../../../assets/global/vendor/formvalidation/formValidation.js"></script>
+<script src="../../../assets/global/vendor/formvalidation/framework/bootstrap.js"></script>
+<script src="../../../assets/global/vendor/matchheight/jquery.matchHeight-min.js"></script>
+<script src="../../../assets/global/vendor/jquery-wizard/jquery-wizard.js"></script>
 
 <!-- Scripts -->
 <script src="../../../assets/global/js/Component.js"></script>
@@ -150,6 +157,11 @@
 <script src="../../../assets/global/js/Plugin/datatables.js"></script>
 <script src="../../../assets/examples/js/tables/datatable.js"></script>
 <script src="../../../assets/global/js/Plugin/dropify.js"></script>
+<script src="../../../assets/global/js/Plugin/jquery-wizard.js"></script>
+<script src="../../../assets/global/js/Plugin/matchheight.js"></script>
+<script src="../../../assets/examples/js/forms/wizard.js"></script>
+<script src="../../../assets/global/js/Plugin/responsive-tabs.js"></script>
+<script src="../../../assets/global/js/Plugin/tabs.js"></script>
 
 
 

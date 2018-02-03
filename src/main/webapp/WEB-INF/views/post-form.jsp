@@ -69,14 +69,13 @@
                                                 oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
                                                 oninput="setCustomValidity('')" required>
                                             <c:forEach items="${blocks}" var="block">
-                                                <c:if test="${}"
                                                 <option value="${block.id}">${block.name}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-control-label" for="file">Media File <sup class="requiredStar">*</sup></label>
-                                        <input type="file" name="file" id="file" id="input-file-max-fs" data-plugin="dropify" data-max-file-size="2M"
+                                        <input type="file" name="file" id="file" id="input-file-max-fs" data-plugin="dropify" data-max-file-size="10M"
                                                value="${post.mediaFilePath}"
                                                placeholder="Enter email"
                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"

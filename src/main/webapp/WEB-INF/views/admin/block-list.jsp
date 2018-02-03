@@ -61,12 +61,12 @@
                                 </c:forEach>
                             </td>
                             <td class="actions text-center">
-                                <a href="<c:url value="/dashboard/block/update/${block.id}"/>"
+                                <a href="<c:url value="/admin/block/update/${block.id}"/>"
                                    class="btn btn-sm btn-icon btn-pure btn-default on-default"
                                    data-toggle="tooltip" data-original-title="Edit">
                                     <i class="icon wb-edit" aria-hidden="true"></i>
                                 </a>
-                                <a href="<c:url value="/dashboard/block/delete/${block.id}"/>"
+                                <a href="<c:url value="/admin/block/delete/${block.id}"/>"
                                    class="btn btn-sm btn-icon btn-pure btn-default on-default"
                                    data-toggle="tooltip" data-original-title="Remove">
                                     <i class="icon wb-trash" aria-hidden="true"></i>

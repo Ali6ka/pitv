@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="cm" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="f" uri="http://pitv/jstl_functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <tiles:insertDefinition name="master">
 <tiles:putAttribute name="title" value="Dashboard-User" />
@@ -16,18 +17,13 @@
     <h1 class="page-title">User form</h1>
     <cm:breadcrumb/>
     <div class="page-header-actions">
-        <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
-                data-toggle="tooltip" data-original-title="Edit">
-            <i class="icon wb-pencil" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
-                data-toggle="tooltip" data-original-title="Refresh">
-            <i class="icon wb-refresh" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round"
-                data-toggle="tooltip" data-original-title="Setting">
-            <i class="icon wb-settings" aria-hidden="true"></i>
-        </button>
+        <div class="mb-15">
+            <a href="<c:url value="/admin/user/list"/> ">
+                <button class="btn btn-outline btn-primary" type="button">
+                    <i class="icon wb-list" aria-hidden="true"></i> User list
+                </button>
+            </a>
+        </div>
     </div>
 </tiles:putAttribute>
 
@@ -44,7 +40,7 @@
                                              alert_type="${result == 'success' ? 'success' : 'danger'}" />
                         </c:if>
                         <div id="exampleAddRow_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                            <form action="<c:url value='/dashboard/user/save'/>" method="post" class="admin-form">
+                            <form action="<c:url value='/admin/user/save'/>" method="post" class="admin-form">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label class="form-control-label" for="username">Username <sup class="requiredStar">*</sup></label>
@@ -60,19 +56,6 @@
                                                oninput="setCustomValidity('')">
                                     </div>
                                 </div>
-<%--                                <div class="form-group">
-                                    <label class="form-control-label">Gender</label>
-                                    <div>
-                                        <div class="radio-custom radio-default radio-inline">
-                                            <input type="radio" id="inputBasicMale" name="inputGender">
-                                            <label for="inputBasicMale">Male</label>
-                                        </div>
-                                        <div class="radio-custom radio-default radio-inline">
-                                            <input type="radio" id="inputBasicFemale" name="inputGender" checked="">
-                                            <label for="inputBasicFemale">Female</label>
-                                        </div>
-                                    </div>
-                                </div>--%>
                                 <div class="form-group">
                                     <label class="form-control-label" for="roles"> Roles: <sup class="requiredStar">*</sup></label>
                                     <select class="form-control select2-hidden-accessible" multiple="" data-plugin="select2"

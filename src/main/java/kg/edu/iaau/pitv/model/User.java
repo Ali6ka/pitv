@@ -4,6 +4,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.util.AutoPopulatingList;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +21,8 @@ public class User
     private String email;
 
     private String avatar;
+
+    private Date dateOfActivation;
 
     private int enabled;
 
@@ -52,7 +55,7 @@ public class User
         this.id = id;
     }
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     public String getUsername()
     {
         return username;
@@ -117,6 +120,17 @@ public class User
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Column(name = "activation_date")
+    public Date getDateOfActivation()
+    {
+        return dateOfActivation;
+    }
+
+    public void setDateOfActivation(Date dateOfActivation)
+    {
+        this.dateOfActivation = dateOfActivation;
     }
 
 /*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

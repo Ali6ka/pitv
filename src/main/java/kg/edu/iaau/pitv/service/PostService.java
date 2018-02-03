@@ -18,5 +18,4 @@ public interface PostService
 
     void delete(Post post);
 
-
 }

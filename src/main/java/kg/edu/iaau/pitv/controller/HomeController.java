@@ -3,15 +3,18 @@ package kg.edu.iaau.pitv.controller;
 
 import kg.edu.iaau.pitv.model.Block;
 import kg.edu.iaau.pitv.model.Role;
+import kg.edu.iaau.pitv.model.User;
+import kg.edu.iaau.pitv.service.UserService;
 import kg.edu.iaau.pitv.utils.CustomFileUtils;
+import org.apache.commons.collections.ArrayStack;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.User;
 import kg.edu.iaau.pitv.model.Post;
 import kg.edu.iaau.pitv.service.BlockService;
 import kg.edu.iaau.pitv.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +28,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -39,7 +45,13 @@ public class HomeController {
     BlockService blockService;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     PostService postService;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @RequestMapping("/")
     public String index()
@@ -84,12 +96,9 @@ public class HomeController {
             method = {RequestMethod.GET})
     public String postList(Model model)
     {
-        Object principal = SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
+        String username = userService.getCurrentUser().getUsername();
 
-        String user = ((User) principal).getUsername();
-
-        List<Post> posts = postService.getAllByAuthor(user);
+        List<Post> posts = postService.getAll();
 
         model.addAttribute("posts",posts);
         return "/post-list";
@@ -100,10 +109,10 @@ public class HomeController {
             method = {RequestMethod.GET})
     public String postAdd(Model model)
     {
-        List<Block> blocks = blockService.getAll();
-        List<Role> roles =
+        List<Block> result = blockService.getUserAvailableBlocks
+                (userService.getCurrentUser().getId());
 
-        model.addAttribute("blocks",blocks);
+        model.addAttribute("blocks",result);
         return "/post-form";
     }
 
@@ -158,14 +167,10 @@ public class HomeController {
             java.util.Date deadLine = simpleDateFormat.parse(dateUntil);
             Date lastDate = new Date(deadLine.getTime());
 
-            Object principal = SecurityContextHolder.getContext()
-                    .getAuthentication().getPrincipal();
-
-
             post.setTitle(title);
-            post.setDate(new java.sql.Date(currentDate.getTime()));
+            post.setDate(new Date(currentDate.getTime()));
             post.setDateUntil(lastDate);
-            post.setAuthor(((User) principal).getUsername());
+            post.setAuthor(userService.getCurrentUser().getUsername());
 
             if (!multipartFile.getOriginalFilename().isEmpty()) {
                 filePath = CustomFileUtils.uploadFile(multipartFile, this.externalResource);
@@ -186,6 +191,88 @@ public class HomeController {
 
         redAttrs.addFlashAttribute("result", "success");
         return "redirect:/post/new";
+    }
+
+    /********************************** PROFILE **********************************/
+
+    @RequestMapping(
+            value = {"/user/profile"},
+            method = {RequestMethod.GET})
+    public String userProfile(Model model)
+    {
+        User user = userService.getCurrentUser();
+
+        model.addAttribute("user",user);
+        return "/user-profile";
+    }
+
+    @RequestMapping(
+            value = {"/user/details"},
+            method = {RequestMethod.GET})
+    public String userDetails(Model model)
+    {
+        User user = userService.getCurrentUser();
+
+        model.addAttribute("user", user);
+        return "/user-details";
+    }
+
+    @RequestMapping(
+            value = {"/user/details/save-info"},
+            method = {RequestMethod.POST})
+    public String updateUserDetails(Model model, RedirectAttributes redAttrs,
+                                    @RequestParam("username") String username,
+                                    @RequestParam("email") String email,
+                                    @RequestParam("avatar") MultipartFile avatar)
+    {
+        User user = userService.getCurrentUser();
+        String avatarPath = null;
+        try
+        {
+            user.setUsername(username);
+            user.setEmail(email);
+
+            if (!avatar.getOriginalFilename().isEmpty())
+            {
+                avatarPath = CustomFileUtils.uploadFile(avatar, this.externalResource);
+                if (avatarPath == null)
+                {
+                    redAttrs.addFlashAttribute("result", "fail");
+                    return "redirect:/user/details";
+                }
+                user.setAvatar(avatarPath);
+            }
+            userService.save(user);
+        }catch (Exception ex){
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/user/details";
+        }
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/user/details";
+    }
+
+    @RequestMapping(
+            value = {"/user/details/save-password"},
+            method = {RequestMethod.POST})
+    public String updateUserDetails(Model model, RedirectAttributes redAttrs,
+                                    @RequestParam("current") String currentPassword,
+                                    @RequestParam("new") String newPassword)
+    {
+        User user = userService.getCurrentUser();
+        try
+        {
+            if(!bCryptPasswordEncoder.matches(currentPassword,user.getPassword())){
+                redAttrs.addFlashAttribute("result", "fail");
+                return "redirect:/user/details";
+            }
+            user.setPassword(newPassword);
+            userService.save(user);
+        }catch (Exception ex){
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/user/details";
+        }
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/user/details";
     }
 
 }
