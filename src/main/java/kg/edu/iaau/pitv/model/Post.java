@@ -15,7 +15,7 @@ public class Post
 
     private String title;
 
-    private String author;
+    private User author;
 
     private Date date;
 
@@ -25,11 +25,13 @@ public class Post
 
     private String filePath;
 
+    private Status status;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="post_sequence")
     @SequenceGenerator(name="post_sequence", sequenceName = "post_seq")
-    @Column(name="user_id")
+    @Column(name = "post_id")
     public int getId()
     {
         return id;
@@ -51,13 +53,14 @@ public class Post
         this.title = title;
     }
 
-    @Column(name = "author")
-    public String getAuthor()
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    public User getAuthor()
     {
         return author;
     }
 
-    public void setAuthor(String author)
+    public void setAuthor(User author)
     {
         this.author = author;
     }
@@ -84,7 +87,10 @@ public class Post
         this.dateUntil = dateUntil;
     }
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(name = "post_block",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "block_id"))
     public Set<Block> getBlocks()
     {
         return blocks;
@@ -104,5 +110,17 @@ public class Post
     public void setFilePath(String filePath)
     {
         this.filePath = filePath;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_id")
+    public Status getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(Status status)
+    {
+        this.status = status;
     }
 }

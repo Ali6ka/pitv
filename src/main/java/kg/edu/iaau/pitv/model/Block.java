@@ -16,6 +16,8 @@ public class Block
 
     private Set<Device> devices;
 
+    private Set<Post> posts;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="block_sequence")
     @SequenceGenerator(name="block_sequence", sequenceName = "block_seq")
@@ -70,4 +72,14 @@ public class Block
         this.devices = devices;
     }
 
+    @ManyToMany(mappedBy = "blocks")
+    public Set<Post> getPosts()
+    {
+        return posts;
+    }
+
+    public void setPosts(Set<Post> posts)
+    {
+        this.posts = posts;
+    }
 }

@@ -57,7 +57,7 @@
                                     <span class="badge badge-outline badge-primary">${block.name}</span>
                                 </c:forEach>
                             </td>
-                            <td>${post.author}</td>
+                            <td>${post.author.username}</td>
                             <td class="actions text-center">
                                 <a href="<c:url value="/post/delete/${post.id}"/>"
                                    class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"

@@ -4,12 +4,14 @@ import kg.edu.iaau.pitv.tiles.MasterPreparer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 
 @Configuration
+@EnableAsync
 public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Value("${system.app.external.resource.location}")
     private String externalResource;

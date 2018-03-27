@@ -1,14 +1,12 @@
 package kg.edu.iaau.pitv.service;
 
 import kg.edu.iaau.pitv.dao.PostDAO;
-import kg.edu.iaau.pitv.model.Block;
-import kg.edu.iaau.pitv.model.Device;
-import kg.edu.iaau.pitv.model.Post;
-import kg.edu.iaau.pitv.model.Role;
+import kg.edu.iaau.pitv.model.*;
 import kg.edu.iaau.pitv.utils.CustomFileUtils;
 import kg.edu.iaau.pitv.utils.FTPUploader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +26,9 @@ public class PostServiceImpl implements PostService
 
     @Autowired
     BlockService blockService;
+
+    @Autowired
+    StatusService statusService;
 
     @Override
     @Transactional(readOnly = true)
@@ -83,6 +84,7 @@ public class PostServiceImpl implements PostService
         }
 
         post.setBlocks(blocks);
+        post.setStatus(statusService.getByTitle("ACTIVE"));
         postDAO.saveAndFlush(post);
     }
 

@@ -170,7 +170,7 @@ public class HomeController {
             post.setTitle(title);
             post.setDate(new Date(currentDate.getTime()));
             post.setDateUntil(lastDate);
-            post.setAuthor(userService.getCurrentUser().getUsername());
+            post.setAuthor(userService.getCurrentUser());
 
             if (!multipartFile.getOriginalFilename().isEmpty()) {
                 filePath = CustomFileUtils.uploadFile(multipartFile, this.externalResource);

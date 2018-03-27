@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PostDAO extends JpaRepository<Post, Integer>
 {
-    public List<Post> findAllByAuthor(String author);
+    List<Post> findAllByAuthor(String author);
 }

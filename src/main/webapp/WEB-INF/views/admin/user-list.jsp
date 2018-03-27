@@ -49,7 +49,7 @@
                     <tr class="gradeA">
                         <td class="text-center">
                             <a href="#" class="media-left">
-                                <img src="/assets/custom/images/default_avatar.png" class="navbar-brand-logo" alt="">
+                                <img src="<c:url value="/resources/${user.avatar}"/>" class="navbar-brand-logo" alt="">
                             </a>
                         </td>
                         <td>${user.username}</td>
