@@ -66,9 +66,7 @@ public class Device
 
 
     @ManyToOne
-    @JoinColumn(
-            name = "block_id"
-    )
+    @JoinColumn(name = "block_id")
     public Block getBlock()
     {
         return block;

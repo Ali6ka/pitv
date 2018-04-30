@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pitv-572997",
+  "private_key_id": "79e3c1b17932720e8004de5f23661ec4c5835ae3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDUO66hSknDsArV\niBEr70lVaVzHvCzN5uG7kZMR9EXBBt6nl76bZbO++L7A1zMFVWR7jPwyhtQkflL/\nXSmtDvsj3kTw1FgqGzv/YE+JV4vCpYpjm8LRwxjMtEEHwZ6sNwQ1jc/spSUDSUNP\nqXIb6THo7D78NkYXUwabUDAMVJG5mklxo+XYcCA01PqkJrsMpxZ61QC46v1tBSNU\nbgUhXiJNgfRFMqF9l3ZXbZmcTXZrs5f26DBtSwsyk679E5/HBq1QKjfToJlBlamq\n5qRJ88xpYtc2J6wuXhns5xBNHLgyYpQ4DhPwn/rRUlDbxzyllFCn152DkR1vjQ+Z\nBqdBYxgNAgMBAAECggEANGT4h26K1+Hnxs/050sHaGvewRuKVxmy7Caz72iF6PGs\neaTrZDs/HPwVQY/PE3fBmwPTBhlFma3LCSqDfasXYoM+s1LE4j4/eVwaPp6LjRXn\nnJApUDYxMuYkMMlCxiK96ge0x2f8w3ssgCflmRDgpq9eHE88zgjL9n9dIUomgLJs\nHdreqRmnlPdbCXkhUqq1d1Nafb1MOKsMMuTZ8h3IxFu0omFN/v/nBbLOM00kbKOu\n8OqR+q6NWEFzzYOjLW7irDFvYh+LmrWN+eSJbWwts0OZGcJ7xBeHr3YGwOfLdu5A\n38MpO60c2yGNy374lxtkeW83sGoVcEopX0ypGTfD6QKBgQD6zOawgnk9fKpTKNKX\nYGwyigAmS668AlOpGhjordn4wB+NaqK3h5n0ZPcQFv1jLJpm2im79CL+Xqy6GchL\nMiqchpF5hWXjmu04x72dtBbvRVNpXF/8jhxGyu8mbr7ennR/aiZksaj3C6Paj+/e\nHjOJehpOL9Eh4sx20ffJidF/pQKBgQDYohbI2QHcGYFPtDFkUt/lTAhY5nr9RdJx\nOMDbzM/rYet1W58L3j/2dtKssWjHYD7OH6i8aEfvu5b80MpfP7Riam3ZxuH96dKu\nR8fhhG+wYBM8krLyK9k5YiBSSK/MRHHrXUQwNC4g9xntZavxQHb64de7XNoCZy8B\nWcQV4sBKSQKBgB0qGKVr9rdMuO3EsICD6PETlSLe6Cnax2nBrCXamZ9QkBq8zME0\n1pVR7F0Fn1+Z/zZ4piPCJxOXZNSbTOxZoBTlnSMZfRizmmRg7c7Z81TNpf55jHvs\n9qLQ1HCOrklq+bcbW+2Xr0NTKjGvTUByGKIi/c4bx2D+Y7Jphjv8d801AoGBAJ4T\neOjKYS8IdXGBnWEFkFczagvk8u4Jmwv/S8uX4khyRWx3lNEGNkpUXlqhgkGqG2ox\nc+E3fvaSPhTxDhr+01PVMZ9uHs43ZwLBYjtPdmiPUroqmeVY1cOntMoWPCGj+DS0\n8+Lw0JBBf2vZeuQqFCfx0IfpszN5s7UamZkWwxXxAoGBAKhdSH2DqNSjnWBGLQXp\nykPD4WKx00IQvcAmrERn9nj/Tq1/Ldz1D3ZMJ7gOq5QJb8yRvLRue4JDfzf+txxf\nWcBOt8tvnBIqbv9XWClZkmkJ1q0EcL++iCDQHRiBcJ5nQlB034AkLM9UeFXAKUR+\nL3unQbDuGe/1ajFZaxw+4why\n-----END PRIVATE KEY-----\n",
+  "client_email": "pitv-service-account@pitv-572997.iam.gserviceaccount.com",
+  "client_id": "106833424975246930800",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pitv-service-account%40pitv-572997.iam.gserviceaccount.com"
+}

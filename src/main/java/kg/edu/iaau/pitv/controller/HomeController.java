@@ -1,11 +1,14 @@
 package kg.edu.iaau.pitv.controller;
 
 
+import com.google.api.services.calendar.model.Event;
 import kg.edu.iaau.pitv.model.Block;
 import kg.edu.iaau.pitv.model.Role;
 import kg.edu.iaau.pitv.model.User;
 import kg.edu.iaau.pitv.service.UserService;
+import kg.edu.iaau.pitv.utils.CalendarQuickstart;
 import kg.edu.iaau.pitv.utils.CustomFileUtils;
+import kg.edu.iaau.pitv.utils.ScheduleUtils;
 import org.apache.commons.collections.ArrayStack;
 import org.springframework.beans.factory.annotation.Value;
 import kg.edu.iaau.pitv.model.Post;
@@ -33,6 +36,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -90,6 +94,15 @@ public class HomeController {
         return "redirect:/login?logout";
     }
 
+    /********************************** PROFILE **********************************/
+
+    @RequestMapping(value = "/schedule", method = RequestMethod.GET)
+    public String getSchedule(Model model){
+        Map<String,List<Event>> events = ScheduleUtils.getFacultySchedule();
+        model.addAttribute("schedule", events);
+        return "/schedule";
+    }
+
     /********************************** POST **********************************/
     @RequestMapping(
             value = {"/post/list"},
@@ -115,20 +128,6 @@ public class HomeController {
         model.addAttribute("blocks",result);
         return "/post-form";
     }
-
-/*    @RequestMapping(
-            value = {"/dashboard/block/update/{id}"},
-            method = {RequestMethod.GET})
-    public String blockUpdate(Model model, @PathVariable("id") int id)
-    {
-        Block block = blockService.getById(id);
-        List<Role> roles = roleService.getAll();
-
-        model.addAttribute("block", block);
-        model.addAttribute("roles", roles);
-
-        return "admin/block-form";
-    }*/
 
     @RequestMapping(
             value = {"/post/delete/{id}"},
