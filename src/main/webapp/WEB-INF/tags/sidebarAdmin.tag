@@ -87,6 +87,45 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="site-menu-category">Faculty management</li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon fa-university" aria-hidden="true"></i>
+                            <span class="site-menu-title">Faculty</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/admin/faculty/list"/>">
+                                    <span class="site-menu-title">Faculty list</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/admin/faculty/new"/>">
+                                    <span class="site-menu-title">Create faculty</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="site-menu-item has-sub">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon fa-mortar-board" aria-hidden="true"></i>
+                            <span class="site-menu-title">Department</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/admin/department/list"/>">
+                                    <span class="site-menu-title">Department list</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/admin/department/new"/>">
+                                    <span class="site-menu-title">Create department</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

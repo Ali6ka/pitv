@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DeviceDAO extends JpaRepository<Device, Integer>
 {
-    Device findByIp(String ip);
+    Device findDeviceByIp(String ip);
 
     List<Device> findAllByBlock(int blockId);
 }

@@ -1,6 +1,9 @@
 package kg.edu.iaau.pitv.model;
 
+import org.hibernate.annotations.JoinColumnOrFormula;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table (name = "DEVICE_TBL")
@@ -16,6 +19,7 @@ public class Device
 
     private Block block;
 
+    private Faculty faculty;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="device_sequence")
@@ -31,7 +35,7 @@ public class Device
         this.id = id;
     }
 
-    @Column(name="ip")
+    @Column(name="ip", unique = true)
     public String getIp()
     {
         return ip;
@@ -75,5 +79,17 @@ public class Device
     public void setBlock(Block block)
     {
         this.block = block;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    public Faculty getFaculty()
+    {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty)
+    {
+        this.faculty = faculty;
     }
 }

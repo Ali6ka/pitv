@@ -38,7 +38,7 @@ public class DeviceServiceimpl implements DeviceService
     @Transactional
     public Device getByIp(String ip)
     {
-        return deviceDAO.findByIp(ip);
+        return deviceDAO.findDeviceByIp(ip);
     }
 
     @Override

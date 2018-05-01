@@ -16,12 +16,10 @@ import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-public class CalendarQuickstart {
+public class GoogleCalendarUtils
+{
     private static final String APPLICATION_NAME = "pitv";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String CREDENTIALS_FOLDER = "credentials"; // Directory to store user credentials.
@@ -50,7 +48,7 @@ public class CalendarQuickstart {
         return credentials;
     }
 
-    public static List<Event> getEvents() throws IOException, GeneralSecurityException {
+    public static List<Event> getEvents(String calendarId) throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         com.google.api.services.calendar.Calendar service =
@@ -62,7 +60,7 @@ public class CalendarQuickstart {
         DateTime end = new DateTime(getEnd(new Date()));
         DateTime now = new DateTime(System.currentTimeMillis());
 
-        Events events = service.events().list("fidksdfep63p7lmp8pdm98euqk@group.calendar.google.com")
+        Events events = service.events().list(calendarId)
                 .setMaxResults(10)
                 .setTimeMin(now)
                 .setTimeMax(end)

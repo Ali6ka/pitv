@@ -40,6 +40,7 @@
                     <th>Login</th>
                     <th>Password</th>
                     <th>Block</th>
+                    <th>Department</th>
                     <th class="text-center">Actions</th>
                 </tr>
                 </thead>
@@ -50,6 +51,7 @@
                         <td>${device.login}</td>
                         <td>${device.password}</td>
                         <td>${device.block.name}</td>
+                        <td>${device.faculty.name}</td>
                         <td class="actions text-center">
                             <a href="<c:url value="/admin/device/update/${device.id}"/>"
                                class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"

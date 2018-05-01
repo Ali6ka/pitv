@@ -7,19 +7,19 @@
 
 <tiles:insertDefinition name="master">
 
-    <tiles:putAttribute name="title" value="Dashboard-Device" />
+    <tiles:putAttribute name="title" value="Dashboard-Department" />
     <tiles:putAttribute name="sidebar">
         <cm:sidebarAdmin/>
     </tiles:putAttribute>
 
     <tiles:putAttribute name="page-header">
-        <h1 class="page-title">Device form</h1>
+        <h1 class="page-title">Department form</h1>
         <cm:breadcrumb/>
         <div class="page-header-actions">
             <div class="mb-15">
-                <a href="<c:url value="/admin/device/list"/> ">
-                    <button class="btn btn-outline btn-primary" type="button">
-                        <i class="icon wb-list" aria-hidden="true"></i> Device list
+                <a href="<c:url value="/admin/department/list"/> ">
+                    <button id="" class="btn btn-outline btn-primary" type="button">
+                        <i class="icon wb-list" aria-hidden="true"></i> Department list
                     </button>
                 </a>
             </div>
@@ -34,54 +34,35 @@
                         <!-- Example Basic Form (Form row) -->
                         <div class="example-wrap">
                             <c:if test="${!empty result}">
-                                <cm:alert_wizard title="${result == 'success' ? 'Device successfuly saved' :
+                                <cm:alert_wizard title="${result == 'success' ? 'Department successfuly saved' :
                                                                             'Sorry, the error was occured, try again'}"
                                                  alert_type="${result == 'success' ? 'success' : 'danger'}" />
                             </c:if>
-                            <form action="<c:url value='/admin/device/save'/>" method="post" class="admin-form">
+                            <form action="<c:url value='/admin/department/save'/>" method="post" class="admin-form">
                                 <div class="tab-content">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="ip">IP address <sup class="requiredStar">*</sup>
+                                        <label class="form-control-label" for="name">Name<sup class="requiredStar">*</sup>
                                         </label>
-                                        <input type="text" name="ip" id="ip"
+                                        <input type="text" name="name" id="name"
                                                class="form-control"
                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                               oninput="setCustomValidity('')" value="${device.ip}" required>
+                                               oninput="setCustomValidity('')" value="${department.name}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-control-label" for="login">Login <sup class="requiredStar">*</sup>
+                                        <label class="form-control-label" for="code">Short Name <sup class="requiredStar">*</sup>
                                         </label>
-                                        <input type="text" name="login" id="login"
+                                        <input type="text" name="code" id="code"
                                                class="form-control"
                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                               oninput="setCustomValidity('')" value="${device.login}" required>
+                                               oninput="setCustomValidity('')" value="${department.code}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-control-label" for="password">Password <sup class="requiredStar">*</sup>
+                                        <label class="form-control-label" for="calendarId">Calendar ID <sup class="requiredStar">*</sup>
                                         </label>
-                                        <input type="text" name="password" id="password"
+                                        <input type="text" name="calendarId" id="calendarId"
                                                class="form-control"
                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                               oninput="setCustomValidity('')" value="${device.password}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="block"> Block <sup class="requiredStar">*</sup></label>
-                                        <select class="form-control select2-hidden-accessible" data-plugin="select2"
-                                                data-select2-id="4" tabindex="-1" aria-hidden="true"
-                                                name="block" id="block" placeholder="Choose block"
-                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                                oninput="setCustomValidity('')" required>
-                                            <c:forEach items="${blocks}" var="block">
-                                                <c:choose>
-                                                    <c:when test="${block eq device.block}">
-                                                        <option value="${block.id}" selected>${block.name}</option>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <option value="${block.id}">${block.name}</option>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
-                                        </select>
+                                               oninput="setCustomValidity('')" value="${department.calendarId}" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-control-label" for="faculty"> Faculty <sup class="requiredStar">*</sup></label>
@@ -92,7 +73,7 @@
                                                 oninput="setCustomValidity('')" required>
                                             <c:forEach items="${faculties}" var="faculty">
                                                 <c:choose>
-                                                    <c:when test="${faculty eq device.faculty}">
+                                                    <c:when test="${faculty eq department.faculty}">
                                                         <option value="${faculty.id}" selected>${faculty.name}</option>
                                                     </c:when>
                                                     <c:otherwise>
@@ -102,10 +83,10 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <input type="hidden" name="deviceId" value="${device.id}">
+                                    <input type="hidden" name="departmentId" value="${department.id}">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     <div class="text-right taxes-form__submit-wrapper">
-                                        <button type="submit" class="btn btn-primary">Save device<i class="icon-arrow-right14 position-right"></i></button>
+                                        <button type="submit" class="btn btn-primary">Save department<i class="icon-arrow-right14 position-right"></i></button>
                                     </div>
                                 </div> <!-- .tab-content -->
                             </form>

@@ -18,28 +18,33 @@
     <tiles:putAttribute name="page-content">
         <div class="panel">
             <div class="example table-responsive table-bordered">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th class="text-center" colspan="6">COM Department</th>
-<%--                        <c:forEach items="${schedule}" var="s">
-                            <th class="text-center">${s.key}</th>
-                        </c:forEach>--%>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${schedule}" var="events">
+                <c:forEach items="${schedule}" var="depSchedule">
+                    <table class="table">
+                        <thead>
                         <tr>
-                            <th>${events.key}</th>
-                            <c:forEach items="${events.value}" var="event">
-<%--                                <fmt:formatDate value="${event.start.dateTime}" pattern="HH:MM" var="start"/>
-                                <fmt:formatDate value="${event.end.dateTime}" pattern="HH:MM" var="end"/>--%>
-                                <td>${event.summary}<br>${event.location}</td>
-                            </c:forEach>
+                            <th class="text-center" style="background-color: #263238; color: white" colspan="6">${depSchedule.key}</th>
                         </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${depSchedule.value}" var="groupSchedule">
+                            <tr>
+                                <th width="100px" style="color: white; background-color: #007bff">${groupSchedule.key}</th>
+                                <c:forEach items="${groupSchedule.value}" var="event">
+                                    <%--<fmt:formatDate value="${event.start.dateTime}" pattern="HH:MM" var="start"/>--%>
+                                    <%--<fmt:formatDate value="${event.end.dateTime}" pattern="HH:MM" var="end"/>--%>
+                                    <td>${event.summary}<br>${event.location}</td>
+                                </c:forEach>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                    <br>
+                </c:forEach>
+            </div>
+        </div>
+    </tiles:putAttribute>
+</tiles:insertDefinition>
+
 <%--                <table class="table">
                     <thead>
                         <tr>
@@ -64,7 +69,3 @@
                         </tr>
                     </tbody>
                 </table>--%>
-            </div>
-        </div>
-    </tiles:putAttribute>
-</tiles:insertDefinition>

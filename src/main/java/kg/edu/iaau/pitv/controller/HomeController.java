@@ -2,16 +2,12 @@ package kg.edu.iaau.pitv.controller;
 
 
 import com.google.api.services.calendar.model.Event;
-import kg.edu.iaau.pitv.model.Block;
-import kg.edu.iaau.pitv.model.Role;
-import kg.edu.iaau.pitv.model.User;
+import kg.edu.iaau.pitv.model.*;
+import kg.edu.iaau.pitv.service.DeviceService;
 import kg.edu.iaau.pitv.service.UserService;
-import kg.edu.iaau.pitv.utils.CalendarQuickstart;
 import kg.edu.iaau.pitv.utils.CustomFileUtils;
 import kg.edu.iaau.pitv.utils.ScheduleUtils;
-import org.apache.commons.collections.ArrayStack;
 import org.springframework.beans.factory.annotation.Value;
-import kg.edu.iaau.pitv.model.Post;
 import kg.edu.iaau.pitv.service.BlockService;
 import kg.edu.iaau.pitv.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +25,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -56,6 +50,9 @@ public class HomeController {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    DeviceService deviceService;
 
     @RequestMapping("/")
     public String index()
@@ -96,9 +93,11 @@ public class HomeController {
 
     /********************************** PROFILE **********************************/
 
-    @RequestMapping(value = "/schedule", method = RequestMethod.GET)
-    public String getSchedule(Model model){
-        Map<String,List<Event>> events = ScheduleUtils.getFacultySchedule();
+    @RequestMapping(value = "/schedule/{ip:.+}", method = RequestMethod.GET)
+    public String getSchedule(@PathVariable("ip") String ip, Model model)
+    {
+        Device device = deviceService.getByIp(ip);
+        Map<String,Map<String,List<Event>>> events = ScheduleUtils.getFacultySchedule(device.getFaculty());
         model.addAttribute("schedule", events);
         return "/schedule";
     }

@@ -1,13 +1,7 @@
 package kg.edu.iaau.pitv.controller;
 
-import kg.edu.iaau.pitv.model.Block;
-import kg.edu.iaau.pitv.model.Device;
-import kg.edu.iaau.pitv.model.Role;
-import kg.edu.iaau.pitv.model.User;
-import kg.edu.iaau.pitv.service.BlockService;
-import kg.edu.iaau.pitv.service.DeviceService;
-import kg.edu.iaau.pitv.service.RoleService;
-import kg.edu.iaau.pitv.service.UserService;
+import kg.edu.iaau.pitv.model.*;
+import kg.edu.iaau.pitv.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -41,6 +35,9 @@ public class AdminController
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    FacultyDepartmentService facultyDepartmentService;
 
     /********* DASHBOARD ********/
     @RequestMapping(
@@ -339,8 +336,10 @@ public class AdminController
     public String deviceAdd(Model model)
     {
         List<Block> blocks = blockService.getAll();
+        List<Faculty> faculties = facultyDepartmentService.getAllFaculties();
 
         model.addAttribute("blocks", blocks);
+        model.addAttribute("faculties", faculties);
         return "admin/device-form";
     }
 
@@ -351,9 +350,12 @@ public class AdminController
     {
         Device device = deviceService.getById(id);
         List<Block> blocks = blockService.getAll();
+        List<Faculty> faculties = facultyDepartmentService.getAllFaculties();
 
         model.addAttribute("device", device);
         model.addAttribute("blocks", blocks);
+        model.addAttribute("faculties", faculties);
+
 
         return "admin/device-form";
     }
@@ -368,11 +370,11 @@ public class AdminController
             deviceService.delete(deviceService.getById(id));
         } catch (Exception ex) {
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/device/list";
+            return "redirect:/admin/device/list";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/device/list";
+        return "redirect:/admin/device/list";
     }
 
     @RequestMapping(
@@ -384,7 +386,8 @@ public class AdminController
                              @RequestParam("ip") String ip,
                              @RequestParam("login") String login,
                              @RequestParam("password") String password,
-                             @RequestParam("block") int blockId)
+                             @RequestParam("block") int blockId,
+                             @RequestParam("faculty") int facultyId)
     {
         Device device;
 
@@ -399,14 +402,179 @@ public class AdminController
             device.setLogin(login);
             device.setPassword(password);
             device.setBlock(blockService.getById(blockId));
+            device.setFaculty(facultyDepartmentService.getFacultyById(facultyId));
             deviceService.save(device);
 
         } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/device/new";
+            return "redirect:/admin/device/new";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/device/new";
+        return "redirect:/admin/device/new";
+    }
+
+    /********************************** FACULTY **********************************/
+    @RequestMapping(
+            value = {"/faculty/list"},
+            method = {RequestMethod.GET})
+    public String facultyList(Model model)
+    {
+        List<Faculty> faculties = facultyDepartmentService.getAllFaculties();
+        model.addAttribute("faculties",faculties);
+        return "admin/faculty-list";
+    }
+
+    @RequestMapping(
+            value = {"/faculty/new"},
+            method = {RequestMethod.GET})
+    public String facultyAdd(Model model)
+    {
+        return "admin/faculty-form";
+    }
+
+    @RequestMapping(
+            value = {"/faculty/update/{id}"},
+            method = {RequestMethod.GET})
+    public String facultyUpdate(Model model, @PathVariable("id") int id)
+    {
+        Faculty faculty = facultyDepartmentService.getFacultyById(id);
+        model.addAttribute("faculty", faculty);
+        return "admin/faculty-form";
+    }
+
+    @RequestMapping(
+            value = {"/faculty/delete/{id}"},
+            method = {RequestMethod.GET})
+    public String facultyDelete(Model model, @PathVariable("id") int id,
+                               RedirectAttributes redAttrs)
+    {
+        try {
+            facultyDepartmentService.delete(facultyDepartmentService.getFacultyById(id));
+        } catch (Exception ex) {
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/admin/faculty/list";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/admin/faculty/list";
+    }
+
+    @RequestMapping(
+            value = {"/faculty/save"},
+            method = {RequestMethod.POST})
+    public String facultySave(Model model,
+                             RedirectAttributes redAttrs,
+                             @RequestParam("facultyId") String id,
+                             @RequestParam("name") String name)
+    {
+        Faculty faculty;
+
+        try
+        {
+            if ((id.trim().length() > 0))
+                faculty = facultyDepartmentService.getFacultyById(Integer.parseInt(id));
+            else
+                faculty = new Faculty();
+
+            faculty.setName(name);
+            facultyDepartmentService.save(faculty);
+
+        } catch (Exception ex){
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/admin/faculty/new";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/admin/faculty/new";
+    }
+
+    /********************************** DEPARTMENT **********************************/
+    @RequestMapping(
+            value = {"/department/list"},
+            method = {RequestMethod.GET})
+    public String departmentList(Model model)
+    {
+        List<Department> departments = facultyDepartmentService.getAllDepartments();
+
+        model.addAttribute("departments",departments);
+        return "admin/department-list";
+    }
+
+    @RequestMapping(
+            value = {"/department/new"},
+            method = {RequestMethod.GET})
+    public String departmentAdd(Model model)
+    {
+        List<Faculty> faculties = facultyDepartmentService.getAllFaculties();
+
+        model.addAttribute("faculties", faculties);
+        return "admin/department-form";
+    }
+
+    @RequestMapping(
+            value = {"/department/update/{id}"},
+            method = {RequestMethod.GET})
+    public String departmentUpdate(Model model, @PathVariable("id") int id)
+    {
+        Department department = facultyDepartmentService.getDepartmentById(id);
+        List<Faculty> faculties = facultyDepartmentService.getAllFaculties();
+
+        model.addAttribute("department", department);
+        model.addAttribute("faculties", faculties);
+
+        return "admin/department-form";
+    }
+
+    @RequestMapping(
+            value = {"/department/delete/{id}"},
+            method = {RequestMethod.GET})
+    public String departmentDelete(Model model, @PathVariable("id") int id,
+                               RedirectAttributes redAttrs)
+    {
+        try {
+            facultyDepartmentService.delete(facultyDepartmentService.getFacultyById(id));
+        } catch (Exception ex) {
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/admin/department/list";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/admin/department/list";
+    }
+
+    @RequestMapping(
+            value = {"/department/save"},
+            method = {RequestMethod.POST})
+    public String departmentSave(Model model,
+                             RedirectAttributes redAttrs,
+                             @RequestParam("departmentId") String id,
+                             @RequestParam("name") String name,
+                             @RequestParam("code") String code,
+                             @RequestParam("calendarId") String calendarId,
+                             @RequestParam("faculty") int facultyId)
+    {
+        Department department;
+
+        try
+        {
+            if ((id.trim().length() > 0))
+                department = facultyDepartmentService.getDepartmentById(Integer.parseInt(id));
+            else
+                department = new Department();
+
+            department.setName(name);
+            department.setCode(code);
+            department.setCalendarId(calendarId);
+            department.setFaculty(facultyDepartmentService.getFacultyById(facultyId));
+            facultyDepartmentService.save(department);
+
+        } catch (Exception ex){
+            redAttrs.addFlashAttribute("result", "fail");
+            return "redirect:/admin/department/new";
+        }
+
+        redAttrs.addFlashAttribute("result", "success");
+        return "redirect:/admin/department/new";
     }
 }
