@@ -25,20 +25,20 @@
 
     <!-- Plugins -->
     <link rel="stylesheet" href="../../../assets/global/vendor/flag-icon-css/flag-icon.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/animsition/animsition.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/asscrollable/asScrollable.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/switchery/switchery.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/intro-js/introjs.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/slidepanel/slidePanel.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/bootstrap-select/bootstrap-select.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/select2/select2.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/multi-select/multi-select.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/dropify/dropify.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/jquery-wizard/jquery-wizard.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/formvalidation/formValidation.css">
-    <link rel="stylesheet" href="../../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="../../../assets/examples/css/pages/profile.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/animsition/animsition.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/asscrollable/asScrollable.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/switchery/switchery.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/intro-js/introjs.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/slidepanel/slidePanel.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/bootstrap-select/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/select2/select2.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/multi-select/multi-select.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/dropify/dropify.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/jquery-wizard/jquery-wizard.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/formvalidation/formValidation.min.css">
+    <link rel="stylesheet" href="../../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../../assets/examples/css/pages/profile.min.css">
     <link rel="stylesheet" href="../../../assets/global/vendor/datatables.net-bs4/dataTables.bootstrap4.min.css">
     <link rel="stylesheet"
           href="../../../assets/global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.min.css">
@@ -61,7 +61,7 @@
 
 <body class="animsition dashboard">
 <tiles:insertAttribute name="header" />
-<tiles:insertAttribute name="sidebar" />
+<tiles:insertAttribute name="sidebar" defaultValue=""/>
 <tiles:insertAttribute name="gridmenu" />
 <div class="page">
     <div class="page-header">
@@ -89,19 +89,19 @@
 <script src="../../../assets/global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
 <script src="../../../assets/global/vendor/jquery/jquery.js"></script>
 <script src="../../../assets/global/vendor/popper-js/umd/popper.min.js"></script>
-<script src="../../../assets/global/vendor/bootstrap/bootstrap.js"></script>
-<script src="../../../assets/global/vendor/animsition/animsition.js"></script>
+<script src="../../../assets/global/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="../../../assets/global/vendor/animsition/animsition.min.js"></script>
 <script src="../../../assets/global/vendor/mousewheel/jquery.mousewheel.js"></script>
-<script src="../../../assets/global/vendor/asscrollbar/jquery-asScrollbar.js"></script>
-<script src="../../../assets/global/vendor/asscrollable/jquery-asScrollable.js"></script>
-<script src="../../../assets/global/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+<script src="../../../assets/global/vendor/asscrollbar/jquery-asScrollbar.min.js"></script>
+<script src="../../../assets/global/vendor/asscrollable/jquery-asScrollable.min.js"></script>
+<script src="../../../assets/global/vendor/ashoverscroll/jquery-asHoverScroll.min.js"></script>
 
 <!-- Plugins -->
-<script src="../../../assets/global/vendor/switchery/switchery.js"></script>
-<script src="../../../assets/global/vendor/intro-js/intro.js"></script>
+<script src="../../../assets/global/vendor/switchery/switchery.min.js"></script>
+<script src="../../../assets/global/vendor/intro-js/intro.min.js"></script>
 <script src="../../../assets/global/vendor/screenfull/screenfull.js"></script>
-<script src="../../../assets/global/vendor/slidepanel/jquery-slidePanel.js"></script>
-<script src="../../../assets/global/vendor/bootstrap-select/bootstrap-select.js"></script>
+<script src="../../../assets/global/vendor/slidepanel/jquery-slidePanel.min.js"></script>
+<script src="../../../assets/global/vendor/bootstrap-select/bootstrap-select.min.js"></script>
 <script src="../../../assets/global/vendor/select2/select2.full.min.js"></script>
 <script src="../../../assets/global/vendor/multi-select/jquery.multi-select.js"></script>
 <script src="../../../assets/global/vendor/datatables.net/jquery.dataTables.js?"></script>
@@ -114,8 +114,8 @@
 <script src="../../../assets/global/vendor/datatables.net-responsive-bs4/responsive.bootstrap4.min.js?"></script>
 <script src="../../../assets/global/vendor/datatables.net-buttons/dataTables.buttons.min.js?"></script>
 <script src="../../../assets/global/vendor/asrange/jquery-asRange.min.js"></script>
-<script src="../../../assets/global/vendor/bootbox/bootbox.js"></script>
-<script src="../../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="../../../assets/global/vendor/bootbox/bootbox.min.js"></script>
+<script src="../../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
 <script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload.js"></script>
 <script src="../../../assets/global/vendor/blueimp-load-image/load-image.all.min.js"></script>
@@ -126,10 +126,10 @@
 <script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
 <script src="../../../assets/global/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
 <script src="../../../assets/global/vendor/dropify/dropify.min.js"></script>
-<script src="../../../assets/global/vendor/formvalidation/formValidation.js"></script>
-<script src="../../../assets/global/vendor/formvalidation/framework/bootstrap.js"></script>
+<script src="../../../assets/global/vendor/formvalidation/formValidation.min.js"></script>
+<script src="../../../assets/global/vendor/formvalidation/framework/bootstrap.min.js"></script>
 <script src="../../../assets/global/vendor/matchheight/jquery.matchHeight-min.js"></script>
-<script src="../../../assets/global/vendor/jquery-wizard/jquery-wizard.js"></script>
+<script src="../../../assets/global/vendor/jquery-wizard/jquery-wizard.min.js"></script>
 
 <!-- Scripts -->
 <script src="../../../assets/global/js/Component.js"></script>

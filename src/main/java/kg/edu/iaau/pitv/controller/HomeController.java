@@ -91,7 +91,7 @@ public class HomeController {
         return "redirect:/login?logout";
     }
 
-    /********************************** PROFILE **********************************/
+    /********************************** SCHEDULE AND CLOCK **********************************/
 
     @RequestMapping(value = "/schedule/{ip:.+}", method = RequestMethod.GET)
     public String getSchedule(@PathVariable("ip") String ip, Model model)
@@ -100,6 +100,12 @@ public class HomeController {
         Map<String,Map<String,List<Event>>> events = ScheduleUtils.getFacultySchedule(device.getFaculty());
         model.addAttribute("schedule", events);
         return "/schedule";
+    }
+
+    @RequestMapping(value = "/clock", method = RequestMethod.GET)
+    public String getClock()
+    {
+        return "/clock";
     }
 
     /********************************** POST **********************************/

@@ -75,7 +75,7 @@ public class PostServiceImpl implements PostService
                 {
                     FTPUploader ftpUploader = new FTPUploader(device.getIp(),
                             device.getLogin(), device.getPassword());
-                    ftpUploader.uploadFile(externalResource + fileName, fileName, "/files/");
+                    ftpUploader.uploadFile(externalResource + fileName, fileName, "/uploads/");
                 }
             }
 

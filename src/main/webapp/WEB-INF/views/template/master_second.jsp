@@ -23,13 +23,14 @@
     <link rel="stylesheet" href="../../../assets/css/site.min.css">
 
     <!-- Plugins -->
-    <link rel="stylesheet" href="../../../assets/global/vendor/animsition/animsition.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/asscrollable/asScrollable.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/switchery/switchery.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/intro-js/introjs.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/slidepanel/slidePanel.css">
-    <link rel="stylesheet" href="../../../assets/global/vendor/flag-icon-css/flag-icon.css">
-    <link rel="stylesheet" href="../../../assets/examples/css/pages/login-v3.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/animsition/animsition.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/asscrollable/asScrollable.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/switchery/switchery.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/intro-js/introjs.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/slidepanel/slidePanel.min.css">
+    <link rel="stylesheet" href="../../../assets/global/vendor/flag-icon-css/flag-icon.min.css">
+    <link rel="stylesheet" href="../../../assets/examples/css/pages/login-v3.min.css">
+    <link rel="stylesheet" href="../../../assets/plugins/flip-clock/flipclock.css">
 
 
     <!-- Fonts -->
@@ -38,7 +39,7 @@
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
     <!-- Scripts -->
-    <script src="../../../assets/global/vendor/breakpoints/breakpoints.js"></script>
+    <script src="../../../assets/global/vendor/breakpoints/breakpoints.min.js"></script>
     <script>
         Breakpoints();
     </script>
@@ -51,20 +52,21 @@
 
 
 <script src="../../../assets/global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
-<script src="../../../assets/global/vendor/jquery/jquery.js"></script>
+<script src="../../../assets/global/vendor/jquery/jquery.min.js"></script>
 <script src="../../../assets/global/vendor/popper-js/umd/popper.min.js"></script>
-<script src="../../../assets/global/vendor/bootstrap/bootstrap.js"></script>
-<script src="../../../assets/global/vendor/animsition/animsition.js"></script>
+<script src="../../../assets/global/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="../../../assets/global/vendor/animsition/animsition.min.js"></script>
 <script src="../../../assets/global/vendor/mousewheel/jquery.mousewheel.js"></script>
-<script src="../../../assets/global/vendor/asscrollbar/jquery-asScrollbar.js"></script>
-<script src="../../../assets/global/vendor/asscrollable/jquery-asScrollable.js"></script>
-<script src="../../../assets/global/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+<script src="../../../assets/global/vendor/asscrollbar/jquery-asScrollbar.min.js"></script>
+<script src="../../../assets/global/vendor/asscrollable/jquery-asScrollable.min.js"></script>
+<script src="../../../assets/global/vendor/ashoverscroll/jquery-asHoverScroll.min.js"></script>
 
 <!-- Plugins -->
-<script src="../../../assets/global/vendor/switchery/switchery.js"></script>
-<script src="../../../assets/global/vendor/intro-js/intro.js"></script>
+<script src="../../../assets/global/vendor/switchery/switchery.min.js"></script>
+<script src="../../../assets/global/vendor/intro-js/intro.min.js"></script>
 <script src="../../../assets/global/vendor/screenfull/screenfull.js"></script>
-<script src="../../../assets/global/vendor/slidepanel/jquery-slidePanel.js"></script>
+<script src="../../../assets/global/vendor/slidepanel/jquery-slidePanel.min.js"></script>
+<script src="../../assets/plugins/flip-clock/flipclock.min.js"></script>
 
 <!-- Scripts -->
 <script src="../../../assets/global/js/Component.js"></script>
@@ -89,6 +91,8 @@
 <script src="../../../assets/global/js/Plugin/switchery.js"></script>
 <script src="../../../assets/global/js/Plugin/material.js"></script>
 
+
+<tiles:insertAttribute name="js" defaultValue=""/>
 <script>
     (function(document, window, $){
         'use strict';

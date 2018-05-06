@@ -13,7 +13,7 @@ public class CustomFileUtils
     {
         String destinationPath = null;
         if (!multipartFile.getOriginalFilename().isEmpty()) {
-            String[] tokens = multipartFile.getOriginalFilename().split("\\.(?=[^\\.]+$)");
+            String[] tokens = multipartFile.getOriginalFilename().replaceAll("\\s+", "").split("\\.(?=[^\\.]+$)");
             String imageUniqueName = tokens[0] + UUID.randomUUID() + "." + tokens[1];
             File dir = new File(resource);
 

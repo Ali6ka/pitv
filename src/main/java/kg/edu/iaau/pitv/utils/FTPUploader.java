@@ -19,7 +19,12 @@ public class FTPUploader
         ftp = new FTPClient();
         ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
         int reply;
-        ftp.connect(host);
+        try{
+            ftp.connect(host);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
         reply = ftp.getReplyCode();
         if (!FTPReply.isPositiveCompletion(reply)) {
             ftp.disconnect();
@@ -27,14 +32,13 @@ public class FTPUploader
         }
         ftp.login(user, pwd);
         ftp.setFileType(FTP.BINARY_FILE_TYPE);
-        ftp.enterLocalPassiveMode();
     }
     public void uploadFile(String localFileFullName, String fileName, String hostDir)
             throws Exception {
         try(InputStream input = new FileInputStream(new File(localFileFullName))){
             this.ftp.storeFile(hostDir + fileName, input);
         }catch (Exception ex){
-            System.out.print("fewfew");
+            ex.printStackTrace();
         }
         finally
         {

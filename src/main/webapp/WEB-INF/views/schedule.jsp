@@ -7,9 +7,7 @@
 
 <tiles:insertDefinition name="master">
     <tiles:putAttribute name="title" value="Schedule" />
-    <tiles:putAttribute name="sidebar">
-        <cm:sidebar/>
-    </tiles:putAttribute>
+    <tiles:putAttribute name="sidebar" value=""/>
 
     <tiles:putAttribute name="page-header">
         <h1 class="page-title">Schedule - Current day</h1>
@@ -32,7 +30,7 @@
                                 <c:forEach items="${groupSchedule.value}" var="event">
                                     <%--<fmt:formatDate value="${event.start.dateTime}" pattern="HH:MM" var="start"/>--%>
                                     <%--<fmt:formatDate value="${event.end.dateTime}" pattern="HH:MM" var="end"/>--%>
-                                    <td>${event.summary}<br>${event.location}</td>
+                                    <td style="color:black">${event.summary}<br>${event.location}</td>
                                 </c:forEach>
                             </tr>
                         </c:forEach>
