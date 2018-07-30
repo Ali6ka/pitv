@@ -23,11 +23,28 @@
                                 </a>
                             </li>
                             <li class="site-menu-item">
-                                <a class="animsition-link" href="<c:url value="/post/new"/>">
-                                    <span class="site-menu-title">Create new</span>
+                                <a class="animsition-link" href="<c:url value="/post/new/media"/>">
+                                    <span class="site-menu-title">Create new post</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/post/new/message"/>">
+                                    <span class="site-menu-title">Create new message</span>
                                 </a>
                             </li>
                         </ul>
+<%--                        <a href="javascript:void(1)">
+                            <i class="site-menu-icon fa-desktop" aria-hidden="true"></i>
+                            <span class="site-menu-title">Devices</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub">
+                            <li class="site-menu-item">
+                                <a class="animsition-link" href="<c:url value="/post/list"/>">
+                                    <span class="site-menu-title">Device List</span>
+                                </a>
+                            </li>
+                        </ul>--%>
                     </li>
                 <div class="site-menubar-section">
                     <h5>

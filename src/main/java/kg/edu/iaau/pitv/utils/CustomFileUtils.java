@@ -2,7 +2,10 @@ package kg.edu.iaau.pitv.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 public class CustomFileUtils
@@ -33,6 +36,19 @@ public class CustomFileUtils
         }
 
         return destinationPath;
+    }
+
+    public static String uploadFile(BufferedImage img, String resource)
+    {
+        String imageUniqueName = "message" + UUID.randomUUID() + ".png";
+
+        try {
+            ImageIO.write(img, "png", new File(resource + "/" + imageUniqueName));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return imageUniqueName;
     }
 
 }

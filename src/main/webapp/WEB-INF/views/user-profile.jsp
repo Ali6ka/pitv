@@ -9,7 +9,7 @@
 
     <tiles:putAttribute name="title" value="MCMS: Profile" />
     <tiles:putAttribute name="sidebar">
-        <cm:sidebarAdmin/>
+        <cm:sidebar/>
     </tiles:putAttribute>
 
     <tiles:putAttribute name="page-header">

@@ -22,7 +22,7 @@
             <h3 class="panel-title">Admin Page</h3>
         </div>
         <div class="panel-body __web-inspector-hide-sho rtcut__">
-            <p>Liberatione, pueros dissentio athenis inventore morborum efficiat facere</p>
+            <p>Welcome to Admin panel of MCMS</p>
         </div>
     </div>
 </tiles:putAttribute>

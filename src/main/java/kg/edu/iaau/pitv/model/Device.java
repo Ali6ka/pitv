@@ -9,22 +9,29 @@ import java.util.Set;
 @Table (name = "DEVICE_TBL")
 public class Device
 {
-    private int id;
-
-    private String ip;
-
-    private String login;
-
-    private String password;
-
-    private Block block;
-
-    private Faculty faculty;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="device_sequence")
     @SequenceGenerator(name="device_sequence", sequenceName = "device_seq")
     @Column(name="device_id")
+    private int id;
+
+    @Column(name="ip", unique = true)
+    private String ip;
+
+    @Column(name="login")
+    private String login;
+
+    @Column(name="password")
+    private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "block_id")
+    private Block block;
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
+
     public int getId()
     {
         return id;
@@ -35,7 +42,6 @@ public class Device
         this.id = id;
     }
 
-    @Column(name="ip", unique = true)
     public String getIp()
     {
         return ip;
@@ -46,7 +52,6 @@ public class Device
         this.ip = ip;
     }
 
-    @Column(name="login")
     public String getLogin()
     {
         return login;
@@ -57,7 +62,6 @@ public class Device
         this.login = login;
     }
 
-    @Column(name="password")
     public String getPassword()
     {
         return password;
@@ -68,9 +72,6 @@ public class Device
         this.password = password;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "block_id")
     public Block getBlock()
     {
         return block;
@@ -81,8 +82,6 @@ public class Device
         this.block = block;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "faculty_id")
     public Faculty getFaculty()
     {
         return faculty;

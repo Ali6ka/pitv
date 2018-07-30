@@ -73,7 +73,6 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                    <c:if test="${type eq 'media'}">
                                     <div class="form-group">
                                         <label class="form-control-label" for="file">Media File <sup class="requiredStar">*</sup></label>
                                         <input type="file" name="file" id="file" id="input-file-max-fs" data-plugin="dropify" data-max-file-size="10M"
@@ -81,15 +80,6 @@
                                                placeholder="Enter email"
                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
                                                oninput="setCustomValidity('')" required>
-                                    </div>
-                                    </c:if>
-                                    <div class="form-group">
-                                        <c:if test="${type eq 'message'}">
-                                            <input type="text" name= "message" id="message" class="form-control"
-                                                   placeholder="Enter message"
-                                                   oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                                   oninput="setCustomValidity('')" required>
-                                        </c:if>
                                     </div>
                                     <div class="form-group">
                                         <input type="hidden" name="userId" value="${post.id}">

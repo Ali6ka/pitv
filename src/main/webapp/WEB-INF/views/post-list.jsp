@@ -16,7 +16,7 @@
         <cm:breadcrumb/>
         <div class="page-header-actions">
             <div class="mb-15">
-                <a href="<c:url value="/post/new"/> ">
+                <a href="<c:url value="/post/new/media"/> ">
                     <button class="btn btn-outline btn-primary" type="button">
                         <i class="icon wb-plus" aria-hidden="true"></i> Create new
                     </button>
@@ -46,6 +46,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${posts}" var="post">
+                        <c:if test="${post.status.title eq 'ACTIVE'}">
                         <tr class="gradeA">
                             <td>${post.title}</td>
                             <fmt:formatDate value="${post.date}" var="date" pattern="dd.MM.yyyy"/>
@@ -66,6 +67,7 @@
                                 </a>
                             </td>
                         </tr>
+                        </c:if>
                     </c:forEach>
                     </tbody>
                 </table>

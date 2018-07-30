@@ -24,13 +24,13 @@ public class ScheduleUtils
                     {
                         for (Event event : events)
                         {
-//                            Date ds = sdf.parse(event.getStart().getDateTime().toString());
-//                            DateTime dts = new DateTime(ds);
-//                            event.setStart(new EventDateTime().setDateTime(dts));
-//
-//                            ds = sdf.parse(event.getEnd().getDateTime().toString());
-//                            dts = new DateTime(ds);
-//                            event.setEnd(new EventDateTime().setDateTime(dts));
+/*                            Date ds = sdf.parse(event.getStart().setTimeZone(null).getDateTime().toString());
+                            DateTime dts = new DateTime(ds);
+                            event.setStart(new EventDateTime().setDateTime(dts));
+
+                            ds = sdf.parse(event.getEnd().getDateTime().toString());
+                            dts = new DateTime(ds);
+                            event.setEnd(new EventDateTime().setDateTime(dts));*/
 
                             String key = event.getDescription();
                             if (depSchedule.containsKey(key))

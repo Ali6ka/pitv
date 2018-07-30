@@ -46,7 +46,7 @@
                                         <input type="text" name="name" id="name"
                                                class="form-control"
                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                               oninput="setCustomValidity('')" value="${faculty.title}" required>
+                                               oninput="setCustomValidity('')" value="${faculty.name}" required>
                                     </div>
                                     <input type="hidden" name="facultyId" value="${faculty.id}">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

@@ -31,6 +31,7 @@
                                     <%--<fmt:formatDate value="${event.start.dateTime}" pattern="HH:MM" var="start"/>--%>
                                     <%--<fmt:formatDate value="${event.end.dateTime}" pattern="HH:MM" var="end"/>--%>
                                     <td style="color:black">${event.summary}<br>${event.location}</td>
+
                                 </c:forEach>
                             </tr>
                         </c:forEach>

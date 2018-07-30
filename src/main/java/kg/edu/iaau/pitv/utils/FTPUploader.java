@@ -47,6 +47,21 @@ public class FTPUploader
 
     }
 
+    public void deleteFile(String fileName) throws Exception {
+        try{
+            boolean deleted = this.ftp.deleteFile("/uploads/" + fileName);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        finally
+        {
+            disconnect();
+        }
+
+    }
+
+
+
     public void disconnect(){
         if (this.ftp.isConnected()) {
             try {

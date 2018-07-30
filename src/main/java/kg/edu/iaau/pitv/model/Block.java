@@ -7,21 +7,30 @@ import java.util.Set;
 @Table(name = "BLOCK_TBL")
 public class Block
 {
-
-    private int id;
-
-    private String name;
-
-    private Set<Role> roles;
-
-    private Set<Device> devices;
-
-    private Set<Post> posts;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator="block_sequence")
     @SequenceGenerator(name="block_sequence", sequenceName = "block_seq")
     @Column(name="block_id")
+    private int id;
+
+    @Column(name="block_name", unique = true)
+    private String name;
+
+    @ManyToMany
+    @JoinTable(name = "block_role",
+            joinColumns = @JoinColumn(name = "block_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "block"
+    )
+    private Set<Device> devices;
+
+    @ManyToMany(mappedBy = "blocks")
+    private Set<Post> posts;
+
     public int getId()
     {
         return id;
@@ -32,8 +41,6 @@ public class Block
         this.id = id;
     }
 
-
-    @Column(name="block_name", unique = true)
     public String getName()
     {
         return name;
@@ -44,10 +51,6 @@ public class Block
         this.name = name;
     }
 
-    @ManyToMany
-    @JoinTable(name = "block_role",
-            joinColumns = @JoinColumn(name = "block_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles()
     {
         return roles;
@@ -58,10 +61,6 @@ public class Block
         this.roles = roles;
     }
 
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            mappedBy = "block"
-    )
     public Set<Device> getDevices()
     {
         return devices;
@@ -72,7 +71,6 @@ public class Block
         this.devices = devices;
     }
 
-    @ManyToMany(mappedBy = "blocks")
     public Set<Post> getPosts()
     {
         return posts;

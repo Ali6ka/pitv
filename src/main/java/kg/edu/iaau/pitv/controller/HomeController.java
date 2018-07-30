@@ -7,6 +7,7 @@ import kg.edu.iaau.pitv.service.DeviceService;
 import kg.edu.iaau.pitv.service.UserService;
 import kg.edu.iaau.pitv.utils.CustomFileUtils;
 import kg.edu.iaau.pitv.utils.ScheduleUtils;
+import kg.edu.iaau.pitv.utils.TextToImageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import kg.edu.iaau.pitv.service.BlockService;
 import kg.edu.iaau.pitv.service.PostService;
@@ -123,13 +124,14 @@ public class HomeController {
     }
 
     @RequestMapping(
-            value = {"/post/new"},
+            value = {"/post/new/{type}"},
             method = {RequestMethod.GET})
-    public String postAdd(Model model)
+    public String postAdd(@PathVariable("type") String type, Model model)
     {
         List<Block> result = blockService.getUserAvailableBlocks
                 (userService.getCurrentUser().getId());
 
+        model.addAttribute("type", type);
         model.addAttribute("blocks",result);
         return "/post-form";
     }
@@ -159,7 +161,8 @@ public class HomeController {
                             @RequestParam("title") String title,
                             @RequestParam("dateUntil") String dateUntil,
                             @RequestParam("blocks") List<String> blockIds,
-                            @RequestParam("file") MultipartFile multipartFile)
+                            @RequestParam(name = "message", required = false) String message,
+                            @RequestParam(name = "file", required = false) MultipartFile multipartFile)
     {
         Post post = new Post();
         java.util.Date currentDate = new java.util.Date();
@@ -170,31 +173,43 @@ public class HomeController {
         {
             java.util.Date deadLine = simpleDateFormat.parse(dateUntil);
             Date lastDate = new Date(deadLine.getTime());
-
             post.setTitle(title);
             post.setDate(new Date(currentDate.getTime()));
             post.setDateUntil(lastDate);
             post.setAuthor(userService.getCurrentUser());
 
-            if (!multipartFile.getOriginalFilename().isEmpty()) {
-                filePath = CustomFileUtils.uploadFile(multipartFile, this.externalResource);
-                if (filePath == null) {
-                    redAttrs.addFlashAttribute("result","fail");
-                    return "redirect:/post/new";
+/*            if(message.equals(null))
+            {
+                if (!multipartFile.getOriginalFilename().isEmpty())
+                {
+                    filePath = CustomFileUtils.uploadFile(multipartFile, this.externalResource);
+                    if (filePath == null)
+                    {
+                        redAttrs.addFlashAttribute("result", "fail");
+                        return "redirect:/post/list";
+                    }
                 }
-                post.setFilePath(filePath);
+            } else {
+                filePath = CustomFileUtils.uploadFile(TextToImageConverter.convert(message),this.externalResource);
+            }*/
+            if (!multipartFile.getOriginalFilename().isEmpty())
+            {
+                filePath = CustomFileUtils.uploadFile(multipartFile, this.externalResource);
+                if (filePath == null)
+                {
+                    redAttrs.addFlashAttribute("result", "fail");
+                    return "redirect:/post/list";
+                }
             }
-
             postService.save(post,blockIds,filePath);
-
-
         } catch (Exception ex){
+            ex.printStackTrace();
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/post/new";
+            return "redirect:/post/list";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/post/new";
+        return "redirect:/post/list";
     }
 
     /********************************** PROFILE **********************************/
@@ -204,6 +219,7 @@ public class HomeController {
             method = {RequestMethod.GET})
     public String userProfile(Model model)
     {
+        TextToImageConverter.convert("Hello Ali I am Nurlan Shaidullaev could you please come to my office");
         User user = userService.getCurrentUser();
 
         model.addAttribute("user",user);

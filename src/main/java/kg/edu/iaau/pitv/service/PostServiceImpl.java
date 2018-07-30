@@ -84,6 +84,7 @@ public class PostServiceImpl implements PostService
         }
 
         post.setBlocks(blocks);
+        post.setFilePath(fileName);
         post.setStatus(statusService.getByTitle("ACTIVE"));
         postDAO.saveAndFlush(post);
     }
@@ -92,6 +93,19 @@ public class PostServiceImpl implements PostService
     @Transactional
     public void delete(Post post)
     {
-        postDAO.delete(post);
+        try
+        {
+            post.setStatus(statusService.getByTitle("INACTIVE"));
+            for(Block block : post.getBlocks()){
+                for (Device device : block.getDevices())
+                {
+                    FTPUploader ftpUploader = new FTPUploader(device.getIp(),
+                            device.getLogin(), device.getPassword());
+                    ftpUploader.deleteFile(post.getFilePath());
+                }
+            }
+        }catch (Exception ex){
+            return;
+        }
     }
 }

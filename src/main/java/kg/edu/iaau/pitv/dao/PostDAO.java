@@ -8,4 +8,5 @@ import java.util.List;
 public interface PostDAO extends JpaRepository<Post, Integer>
 {
     List<Post> findAllByAuthor(String author);
+
 }

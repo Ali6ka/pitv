@@ -55,7 +55,7 @@
                                                                             'Sorry, the error was occured, try again'}"
                                                              alert_type="${result == 'success' ? 'success' : 'danger'}" />
                                         </c:if>
-                                        <div id="exampleAddRow_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                                        <div id="info" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                                             <form action="<c:url value='/user/details/save-info'/>" method="post" class="admin-form" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="username">Username <sup class="requiredStar">*</sup></label>
@@ -93,7 +93,7 @@
                                 <div class="tab-pane" id="exampleTabsLineLeftTwo" role="tabpanel">
                                     <!-- Example Basic Form (Form row) -->
                                     <div class="example-wrap">
-                                        <div id="exampleAddRow_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                                        <div id="password" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                                             <form action="<c:url value='/user/details/save-password'/>" method="post" class="admin-form">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="current">Current password <sup class="requiredStar">*</sup></label>
