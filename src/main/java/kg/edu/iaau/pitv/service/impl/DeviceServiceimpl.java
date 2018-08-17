@@ -1,7 +1,8 @@
-package kg.edu.iaau.pitv.service;
+package kg.edu.iaau.pitv.service.impl;
 
 import kg.edu.iaau.pitv.dao.DeviceDAO;
 import kg.edu.iaau.pitv.model.Device;
+import kg.edu.iaau.pitv.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

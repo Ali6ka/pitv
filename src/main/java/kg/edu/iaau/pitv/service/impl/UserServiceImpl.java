@@ -1,9 +1,11 @@
-package kg.edu.iaau.pitv.service;
+package kg.edu.iaau.pitv.service.impl;
 
 import kg.edu.iaau.pitv.dao.RoleDAO;
 import kg.edu.iaau.pitv.dao.UserDAO;
 import kg.edu.iaau.pitv.model.Role;
 import kg.edu.iaau.pitv.model.User;
+import kg.edu.iaau.pitv.service.RoleService;
+import kg.edu.iaau.pitv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

@@ -8,6 +8,5 @@ public class ScheduledTasks
 {
     @Scheduled(cron  = "0 * * ? * *")
     public void scheduleTaskWithCronExpression() {
-
     }
 }

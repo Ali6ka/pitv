@@ -1,4 +1,4 @@
-package kg.edu.iaau.pitv.service;
+package kg.edu.iaau.pitv.service.impl;
 
 import kg.edu.iaau.pitv.dao.UserDAO;
 import kg.edu.iaau.pitv.model.Role;

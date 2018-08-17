@@ -1,7 +1,10 @@
-package kg.edu.iaau.pitv.service;
+package kg.edu.iaau.pitv.service.impl;
 
 import kg.edu.iaau.pitv.dao.PostDAO;
 import kg.edu.iaau.pitv.model.*;
+import kg.edu.iaau.pitv.service.BlockService;
+import kg.edu.iaau.pitv.service.PostService;
+import kg.edu.iaau.pitv.service.StatusService;
 import kg.edu.iaau.pitv.utils.CustomFileUtils;
 import kg.edu.iaau.pitv.utils.FTPUploader;
 import org.springframework.beans.factory.annotation.Autowired;

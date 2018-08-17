@@ -1,9 +1,12 @@
-package kg.edu.iaau.pitv.service;
+package kg.edu.iaau.pitv.service.impl;
 
 import kg.edu.iaau.pitv.dao.BlockDAO;
 import kg.edu.iaau.pitv.model.Block;
 import kg.edu.iaau.pitv.model.Role;
 import kg.edu.iaau.pitv.model.User;
+import kg.edu.iaau.pitv.service.BlockService;
+import kg.edu.iaau.pitv.service.RoleService;
+import kg.edu.iaau.pitv.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

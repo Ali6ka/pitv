@@ -1,9 +1,10 @@
-package kg.edu.iaau.pitv.service;
+package kg.edu.iaau.pitv.service.impl;
 
 import kg.edu.iaau.pitv.dao.DepartmentDAO;
 import kg.edu.iaau.pitv.dao.FacultyDAO;
 import kg.edu.iaau.pitv.model.Department;
 import kg.edu.iaau.pitv.model.Faculty;
+import kg.edu.iaau.pitv.service.FacultyDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
