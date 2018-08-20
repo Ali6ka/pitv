@@ -89,7 +89,7 @@ public class HomeController {
             (new SecurityContextLogoutHandler()).logout(request, response, auth);
         }
 
-        return "redirect:/login?logout";
+        return "redirect:/login";
     }
 
     /********************************** SCHEDULE AND CLOCK **********************************/

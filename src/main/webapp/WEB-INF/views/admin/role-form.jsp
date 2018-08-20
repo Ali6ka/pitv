@@ -4,6 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="cm" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <tiles:insertDefinition name="master">
 
@@ -38,23 +40,27 @@
                                                                             'Sorry, the error was occured, try again'}"
                                              alert_type="${result == 'success' ? 'success' : 'danger'}" />
                         </c:if>
-                        <form action="<c:url value='/admin/role/save'/>" method="post" class="admin-form">
+                        <spring:url value="/admin/role/save" var="roleActionUrl" />
+                        <form:form action="${roleActionUrl}" method="post" class="admin-form" modelAttribute="role">
                             <div class="tab-content">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="name">Title : <sup class="requiredStar">*</sup>
-                                    </label>
-                                    <input type="text" name="name" id="name"
-                                           class="form-control"
-                                           oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                           oninput="setCustomValidity('')" value="${role.name}" required>
+                                    <spring:bind path="name">
+                                        <form:label class="form-control-label" for="name" path="name">Title : <sup class="requiredStar">*</sup></form:label>
+                                        <form:input type="text" path="name" id="name"
+                                               class="form-control"
+                                               oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
+                                               oninput="setCustomValidity('')" value="${role.name}" required="true"/>
+                                    </spring:bind>
                                 </div>
-                                <input type="hidden" name="roleId" value="${role.id}">
+                                <spring:bind path="id">
+                                    <form:input type="hidden" name="roleId" path="id" value="${role.id}"/>
+                                </spring:bind>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <div class="text-right taxes-form__submit-wrapper">
                                     <button type="submit" class="btn btn-primary">Save role<i class="icon-arrow-right14 position-right"></i></button>
                                 </div>
                             </div> <!-- .tab-content -->
-                        </form>
+                        </form:form>
                     </div>
                 </div>
             </div>

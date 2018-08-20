@@ -92,7 +92,6 @@
 <script src="../../../assets/global/js/Plugin/material.js"></script>
 
 
-<tiles:insertAttribute name="js" defaultValue=""/>
 <script>
     (function(document, window, $){
         'use strict';

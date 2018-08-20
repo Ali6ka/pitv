@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -66,6 +68,7 @@ public class AdminController
     public String userAdd(Model model)
     {
         List<Role> roles = roleService.getAll();
+        model.addAttribute("user", new User());
         model.addAttribute("roles", roles);
         model.addAttribute("isNew", true);
 
@@ -98,62 +101,28 @@ public class AdminController
             userService.delete(userService.getById(id));
         } catch (Exception ex) {
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/user/list";
+            return "redirect:/admin/user/list";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/user/list";
+        return "redirect:/admin/user/list";
     }
 
     @RequestMapping(
             value = {"/user/save"},
             method = {RequestMethod.POST})
-    public String userSave(Model model,
-                           RedirectAttributes redAttrs,
-                           @RequestParam("userId") String id,
-                           @RequestParam("username") String username,
-                           @RequestParam("password") String password,
-                           @RequestParam("email") String email,
-                           @RequestParam("roles") List<String> roles)
+    public String userSave(@Valid @ModelAttribute("user") User user, BindingResult result,
+                           Model model, RedirectAttributes redAttrs)
     {
-        User user;
-
-        Date currentDate = new Date(new java.util.Date().getTime());
-
-        try
-        {
-            if ((id.trim().length() > 0))
-            {
-                user = userService.getById(Integer.parseInt(id));
-            }
-            else
-            {
-                user = new User();
-                user.setDateOfActivation(currentDate);
-                user.setEnabled(1);
-            }
-
-            if(password.isEmpty()){
-                if(user.getPassword().isEmpty()){
-                    user.setPassword("aaabbb");
-                }
-            }else{
-                user.setPassword(password);
-            }
-
-            user.setUsername(username);
-            user.setEmail(email);
-
-            userService.save(user, roles);
-        } catch (Exception ex){
+        if(result.hasErrors()) {
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/admin/user/new";
+            return "redirect:/admin/user/list";
         }
 
+        userService.save(user);
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/admin/user/new";
+        return "redirect:/admin/user/list";
     }
-
 
     /********************************** ROLE **********************************/
     @RequestMapping(
@@ -172,6 +141,7 @@ public class AdminController
             method = {RequestMethod.GET})
     public String roleAdd(Model model)
     {
+        model.addAttribute("role", new Role());
         return "admin/role-form";
     }
 
@@ -197,40 +167,28 @@ public class AdminController
             roleService.delete(roleService.getById(id));
         } catch (Exception ex) {
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/role/list";
+            return "redirect:/admin/role/list";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/role/list";
+        return "redirect:/admin/role/list";
     }
 
     @RequestMapping(
             value = {"/role/save"},
             method = {RequestMethod.POST})
-    public String roleSave(Model model,
-                           RedirectAttributes redAttrs,
-                           @RequestParam("roleId") String id,
-                           @RequestParam("name") String name)
+    public String roleSave(@Valid @ModelAttribute("role") Role role, Model model,
+                           BindingResult result, RedirectAttributes redAttrs)
     {
-        Role role;
-
-        try
+        if(result.hasErrors())
         {
-            if ((id.trim().length() > 0))
-                role = roleService.getById(Integer.parseInt(id));
-            else
-                role = new Role();
-
-            role.setName(name);
-            roleService.save(role);
-
-        } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/role/new";
+            return "redirect:/admin/role/new";
         }
 
+        roleService.save(role);
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/role/new";
+        return "redirect:/admin/role/new";
     }
 
     /********************************** BLOCK **********************************/
@@ -252,6 +210,7 @@ public class AdminController
     {
         List<Role> roles = roleService.getAll();
 
+        model.addAttribute("block", new Block());
         model.addAttribute("roles",roles);
         model.addAttribute("isNew",true);
         return "admin/block-form";
@@ -281,41 +240,28 @@ public class AdminController
             blockService.delete(blockService.getById(id));
         } catch (Exception ex) {
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/block/list";
+            return "redirect:/admin/block/list";
         }
 
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/block/list";
+        return "redirect:/admin/block/list";
     }
 
     @RequestMapping(
             value = {"/block/save"},
             method = {RequestMethod.POST})
-    public String blockSave(Model model,
-                            RedirectAttributes redAttrs,
-                            @RequestParam("blockId") String id,
-                            @RequestParam("name") String name,
-                            @RequestParam("roles") List<String> roleIds)
+    public String blockSave(@Valid @ModelAttribute("block") Block block, Model model,
+                            BindingResult result, RedirectAttributes redAttrs)
     {
-        Block block;
-
-        try
+        if(result.hasErrors())
         {
-            if ((id.trim().length() > 0))
-                block = blockService.getById(Integer.parseInt(id));
-            else
-                block = new Block();
-
-            block.setName(name);
-            blockService.save(block,roleIds);
-
-        } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
-            return "redirect:/block/new";
+            return "redirect:/admin/block/new";
         }
 
+        blockService.save(block);
         redAttrs.addFlashAttribute("result", "success");
-        return "redirect:/block/new";
+        return "redirect:/admin/block/new";
     }
 
     /********************************** DEVICE **********************************/
@@ -338,6 +284,7 @@ public class AdminController
         List<Block> blocks = blockService.getAll();
         List<Faculty> faculties = facultyDepartmentService.getAllFaculties();
 
+        model.addAttribute("device", new Device());
         model.addAttribute("blocks", blocks);
         model.addAttribute("faculties", faculties);
         return "admin/device-form";
@@ -380,36 +327,16 @@ public class AdminController
     @RequestMapping(
             value = {"/device/save"},
             method = {RequestMethod.POST})
-    public String deviceSave(Model model,
-                             RedirectAttributes redAttrs,
-                             @RequestParam("deviceId") String id,
-                             @RequestParam("ip") String ip,
-                             @RequestParam("login") String login,
-                             @RequestParam("password") String password,
-                             @RequestParam("block") int blockId,
-                             @RequestParam("faculty") int facultyId)
+    public String deviceSave(@Valid @ModelAttribute("device") Device device, Model model,
+                             BindingResult result, RedirectAttributes redAttrs)
     {
-        Device device;
-
-        try
+        if(result.hasErrors())
         {
-            if ((id.trim().length() > 0))
-                device = deviceService.getById(Integer.parseInt(id));
-            else
-                device = new Device();
-
-            device.setIp(ip);
-            device.setLogin(login);
-            device.setPassword(password);
-            device.setBlock(blockService.getById(blockId));
-            device.setFaculty(facultyDepartmentService.getFacultyById(facultyId));
-            deviceService.save(device);
-
-        } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
             return "redirect:/admin/device/new";
         }
 
+        deviceService.save(device);
         redAttrs.addFlashAttribute("result", "success");
         return "redirect:/admin/device/new";
     }
@@ -430,6 +357,7 @@ public class AdminController
             method = {RequestMethod.GET})
     public String facultyAdd(Model model)
     {
+        model.addAttribute("faculty", new Faculty());
         return "admin/faculty-form";
     }
 
@@ -463,28 +391,16 @@ public class AdminController
     @RequestMapping(
             value = {"/faculty/save"},
             method = {RequestMethod.POST})
-    public String facultySave(Model model,
-                             RedirectAttributes redAttrs,
-                             @RequestParam("facultyId") String id,
-                             @RequestParam("name") String name)
+    public String facultySave(@Valid @ModelAttribute("faculty") Faculty faculty, Model model,
+                              BindingResult result, RedirectAttributes redAttrs)
     {
-        Faculty faculty;
-
-        try
+        if(result.hasErrors())
         {
-            if ((id.trim().length() > 0))
-                faculty = facultyDepartmentService.getFacultyById(Integer.parseInt(id));
-            else
-                faculty = new Faculty();
-
-            faculty.setName(name);
-            facultyDepartmentService.save(faculty);
-
-        } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
             return "redirect:/admin/faculty/new";
         }
 
+        facultyDepartmentService.save(faculty);
         redAttrs.addFlashAttribute("result", "success");
         return "redirect:/admin/faculty/new";
     }
@@ -508,6 +424,7 @@ public class AdminController
     {
         List<Faculty> faculties = facultyDepartmentService.getAllFaculties();
 
+        model.addAttribute("department", new Department());
         model.addAttribute("faculties", faculties);
         return "admin/department-form";
     }
@@ -533,7 +450,7 @@ public class AdminController
                                RedirectAttributes redAttrs)
     {
         try {
-            facultyDepartmentService.delete(facultyDepartmentService.getFacultyById(id));
+            facultyDepartmentService.delete(facultyDepartmentService.getDepartmentById(id));
         } catch (Exception ex) {
             redAttrs.addFlashAttribute("result", "fail");
             return "redirect:/admin/department/list";
@@ -546,34 +463,16 @@ public class AdminController
     @RequestMapping(
             value = {"/department/save"},
             method = {RequestMethod.POST})
-    public String departmentSave(Model model,
-                             RedirectAttributes redAttrs,
-                             @RequestParam("departmentId") String id,
-                             @RequestParam("name") String name,
-                             @RequestParam("code") String code,
-                             @RequestParam("calendarId") String calendarId,
-                             @RequestParam("faculty") int facultyId)
+    public String departmentSave(@Valid @ModelAttribute("department") Department department, Model model,
+                                 BindingResult result, RedirectAttributes redAttrs)
     {
-        Department department;
-
-        try
+        if(result.hasErrors())
         {
-            if ((id.trim().length() > 0))
-                department = facultyDepartmentService.getDepartmentById(Integer.parseInt(id));
-            else
-                department = new Department();
-
-            department.setName(name);
-            department.setCode(code);
-            department.setCalendarId(calendarId);
-            department.setFaculty(facultyDepartmentService.getFacultyById(facultyId));
-            facultyDepartmentService.save(department);
-
-        } catch (Exception ex){
             redAttrs.addFlashAttribute("result", "fail");
             return "redirect:/admin/department/new";
         }
 
+        facultyDepartmentService.save(department);
         redAttrs.addFlashAttribute("result", "success");
         return "redirect:/admin/department/new";
     }

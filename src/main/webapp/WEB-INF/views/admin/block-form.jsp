@@ -5,6 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="cm" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="f" uri="http://pitv/jstl_functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <tiles:insertDefinition name="master">
 
@@ -39,47 +41,39 @@
                                                                             'Sorry, the error was occured, try again'}"
                                                  alert_type="${result == 'success' ? 'success' : 'danger'}" />
                             </c:if>
-                            <form action="<c:url value='/admin/block/save'/>" method="post" class="admin-form">
+                            <spring:url value="/admin/block/save" var="actionUrl" />
+                            <form:form action="${actionUrl}" method="post" class="admin-form" modelAttribute="block">
                                 <div class="tab-content">
+                                    <spring:bind path="name">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="name">Title : <sup class="requiredStar">*</sup>
-                                        </label>
-                                        <input type="text" name="name" id="name"
-                                               class="form-control"
+                                        <form:label class="form-control-label" for="name" path="name">Title : <sup class="requiredStar">*</sup>
+                                        </form:label>
+                                        <form:input type="text" path="name" id="name" class="form-control"
                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                               oninput="setCustomValidity('')" value="${block.name}" required>
+                                               oninput="setCustomValidity('')" required="true"/>
                                     </div>
+                                    </spring:bind>
+                                    <spring:bind path="roles">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="roles"> Roles <sup class="requiredStar">*</sup></label>
-                                        <select class="form-control select2-hidden-accessible" multiple="" data-plugin="select2"
-                                                data-select2-id="4" tabindex="-1" aria-hidden="true"
-                                                name="roles" id="roles" placeholder="Choose roles"
-                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                                oninput="setCustomValidity('')" required>
-                                            <c:forEach items="${roles}" var="role">
-                                                <c:if test="${isNew}">
-                                                    <option value="${role.id}">${fn:toLowerCase(role.name)}</option>
-                                                </c:if>
-                                                <c:if test="${!isNew}">
-                                                    <c:choose>
-                                                        <c:when test='${f:containsValue(block.roles, role)}'>
-                                                            <option value="${role.id}" selected>${fn:toLowerCase(role.name)}</option>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <option value="${role.id}">${fn:toLowerCase(role.name)}</option>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </c:if>
-                                            </c:forEach>
-                                        </select>
+                                        <form:label class="form-control-label" for="roles" path="roles"> Roles <sup class="requiredStar">*</sup></form:label>
+                                        <form:select path="roles" class="form-control select2-hidden-accessible" multiple="true" data-plugin="select2"
+                                                     data-select2-id="4" tabindex="-1" aria-hidden="true"
+                                                     name="roles" id="roles" placeholder="Choose roles"
+                                                     oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
+                                                     oninput="setCustomValidity('')">
+                                            <form:options items="${roles}" itemValue="id" itemLabel="name" required="true"/>
+                                        </form:select>
                                     </div>
-                                    <input type="hidden" name="blockId" value="${block.id}">
+                                    </spring:bind>
+                                    <spring:bind path="id">
+                                        <form:input type="hidden" path="id" value="${block.id}"/>
+                                    </spring:bind>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     <div class="text-right taxes-form__submit-wrapper">
                                         <button type="submit" class="btn btn-primary">Save block<i class="icon-arrow-right14 position-right"></i></button>
                                     </div>
                                 </div> <!-- .tab-content -->
-                            </form>
+                            </form:form>
                         </div>
                     </div>
                 </div>

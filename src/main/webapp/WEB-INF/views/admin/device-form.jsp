@@ -4,6 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="cm" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <tiles:insertDefinition name="master">
 
@@ -38,77 +40,71 @@
                                                                             'Sorry, the error was occured, try again'}"
                                                  alert_type="${result == 'success' ? 'success' : 'danger'}" />
                             </c:if>
-                            <form action="<c:url value='/admin/device/save'/>" method="post" class="admin-form">
+                            <spring:url value="/admin/device/save" var="actionUrl"/>
+                            <form:form action="${actionUrl}" method="post" class="admin-form" modelAttribute="device">
                                 <div class="tab-content">
+                                    <spring:bind path="ip">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="ip">IP address <sup class="requiredStar">*</sup>
-                                        </label>
-                                        <input type="text" name="ip" id="ip"
+                                        <form:label class="form-control-label" path="ip" for="ip">IP address <sup class="requiredStar">*</sup>
+                                        </form:label>
+                                        <form:input type="text" path="ip" id="ip" class="form-control"
+                                               oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
+                                               oninput="setCustomValidity('')" value="${device.ip}" required="true"/>
+                                    </div>
+                                    </spring:bind>
+                                    <spring:bind path="login">
+                                    <div class="form-group">
+                                        <form:label class="form-control-label" path="login" for="login">Login <sup class="requiredStar">*</sup>
+                                        </form:label>
+                                        <form:input type="text" path="login" id="login"
                                                class="form-control"
                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                               oninput="setCustomValidity('')" value="${device.ip}" required>
+                                               oninput="setCustomValidity('')" value="${device.login}" required="true"/>
                                     </div>
+                                    </spring:bind>
+                                    <spring:bind path="password">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="login">Login <sup class="requiredStar">*</sup>
-                                        </label>
-                                        <input type="text" name="login" id="login"
+                                        <form:label class="form-control-label" path="password" for="password">Password <sup class="requiredStar">*</sup>
+                                        </form:label>
+                                        <form:input type="text" path="password" id="password"
                                                class="form-control"
                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                               oninput="setCustomValidity('')" value="${device.login}" required>
+                                               oninput="setCustomValidity('')" value="${device.password}" required="true"/>
                                     </div>
+                                    </spring:bind>
+                                    <spring:bind path="block">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="password">Password <sup class="requiredStar">*</sup>
-                                        </label>
-                                        <input type="text" name="password" id="password"
-                                               class="form-control"
-                                               oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                               oninput="setCustomValidity('')" value="${device.password}" required>
+                                        <form:label class="form-control-label" path="block" for="block"> Block <sup class="requiredStar">*</sup></form:label>
+                                        <form:select path="block" class="form-control select2-hidden-accessible" data-plugin="select2"
+                                                     data-select2-id="4" tabindex="-1" aria-hidden="true"
+                                                     name="roles" id="block" placeholder="Choose roles"
+                                                     oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
+                                                     oninput="setCustomValidity('')" required="true">
+                                            <form:options items="${blocks}" itemValue="id" itemLabel="name"/>
+                                        </form:select>
                                     </div>
+                                    </spring:bind>
+                                    <spring:bind path="faculty">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="block"> Block <sup class="requiredStar">*</sup></label>
-                                        <select class="form-control select2-hidden-accessible" data-plugin="select2"
-                                                data-select2-id="4" tabindex="-1" aria-hidden="true"
-                                                name="block" id="block" placeholder="Choose block"
-                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                                oninput="setCustomValidity('')" required>
-                                            <c:forEach items="${blocks}" var="block">
-                                                <c:choose>
-                                                    <c:when test="${block eq device.block}">
-                                                        <option value="${block.id}" selected>${block.name}</option>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <option value="${block.id}">${block.name}</option>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
-                                        </select>
+                                        <form:label class="form-control-label" path="faculty" for="faculty"> Faculty <sup class="requiredStar">*</sup></form:label>
+                                        <form:select path="faculty" class="form-control select2-hidden-accessible" data-plugin="select2"
+                                                     data-select2-id="4" tabindex="-1" aria-hidden="true"
+                                                     name="roles" id="faculty" placeholder="Choose roles"
+                                                     oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
+                                                     oninput="setCustomValidity('')" required="true">
+                                            <form:options items="${faculties}" itemValue="id" itemLabel="name"/>
+                                        </form:select>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="faculty"> Faculty <sup class="requiredStar">*</sup></label>
-                                        <select class="form-control select2-hidden-accessible" data-plugin="select2"
-                                                data-select2-id="4" tabindex="-1" aria-hidden="true"
-                                                name="faculty" id="faculty" placeholder="Choose faculty"
-                                                oninvalid="this.setCustomValidity('Это поле обязательно для заполнения')"
-                                                oninput="setCustomValidity('')" required>
-                                            <c:forEach items="${faculties}" var="faculty">
-                                                <c:choose>
-                                                    <c:when test="${faculty eq device.faculty}">
-                                                        <option value="${faculty.id}" selected>${faculty.name}</option>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <option value="${faculty.id}">${faculty.name}</option>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <input type="hidden" name="deviceId" value="${device.id}">
+                                    </spring:bind>
+                                    <spring:bind path="id">
+                                        <form:input type="hidden" path="id" value="${device.id}"/>
+                                    </spring:bind>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     <div class="text-right taxes-form__submit-wrapper">
                                         <button type="submit" class="btn btn-primary">Save device<i class="icon-arrow-right14 position-right"></i></button>
                                     </div>
                                 </div> <!-- .tab-content -->
-                            </form>
+                            </form:form>
                         </div>
                     </div>
                 </div>

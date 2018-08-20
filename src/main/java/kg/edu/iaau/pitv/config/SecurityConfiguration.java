@@ -30,7 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/login").loginProcessingUrl("/j_spring_security_check")
                 .permitAll()
                 .usernameParameter("ssoId")
                 .passwordParameter("password")

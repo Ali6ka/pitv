@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.*;
 
 @Service("userService")
@@ -60,7 +61,11 @@ public class UserServiceImpl implements UserService
     {
         if(user.getPassword().length() < 40)
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userDAO.save(user);
+
+        if(user.getDateOfActivation().equals(null))
+            user.setDateOfActivation(new Date(new java.util.Date().getTime()));
+
+        userDAO.saveAndFlush(user);
     }
 
     @Override
@@ -73,7 +78,7 @@ public class UserServiceImpl implements UserService
             roles.add(roleService.getById(Integer.parseInt(id)));
         }
         user.setRoles(roles);
-        userDAO.save(user);
+        userDAO.saveAndFlush(user);
     }
 
     @Override

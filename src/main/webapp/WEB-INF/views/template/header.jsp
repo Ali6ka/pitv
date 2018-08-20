@@ -85,7 +85,7 @@
                     <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
                        data-animation="scale-up" role="button">
                         <span class="avatar avatar-online">
-                            <img src="<c:url value="/resources/${currentUser.avatar}"/>" alt="...">
+                            <img src="<c:url value="/assets/images/logo-blue.png"/>" alt="...">
                         </span>
                         <sec:authorize access="isAuthenticated()">
                             <sec:authentication property="principal.username" />
