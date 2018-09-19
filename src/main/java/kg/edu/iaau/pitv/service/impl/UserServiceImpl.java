@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService
         if(user.getPassword().length() < 40)
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
-        if(user.getDateOfActivation().equals(null))
+        if(user.getDateOfActivation() == null)
             user.setDateOfActivation(new Date(new java.util.Date().getTime()));
 
         userDAO.saveAndFlush(user);
